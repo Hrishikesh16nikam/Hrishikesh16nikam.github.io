@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hrishikesh Nikam // root@system</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #000000;
@@ -32,6 +32,7 @@
             overflow-x: hidden;
             line-height: 1.6;
             position: relative;
+            cursor: none;
         }
 
         /* Scanline overlay */
@@ -89,6 +90,67 @@
             100% { transform: translate(30px, 30px); }
         }
 
+        /* Custom Cursor */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--terminal-green);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.15s ease;
+            box-shadow: 0 0 10px var(--terminal-green);
+        }
+
+        .cursor-ring {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--terminal-green);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9997;
+            transition: all 0.2s ease;
+            opacity: 0.6;
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--terminal-green);
+            border-radius: 50%;
+            box-shadow: 0 0 5px var(--terminal-green);
+            animation: particleFloat 15s ease-in-out infinite;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
         /* Boot sequence */
         #boot-sequence {
             position: fixed;
@@ -101,9 +163,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
-            color: var(--terminal-green);
             animation: fadeOut 0.5s ease 4s forwards;
+            overflow: hidden;
         }
 
         @keyframes fadeOut {
@@ -113,21 +174,219 @@
             }
         }
 
+        .boot-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Radar Effect */
+        .radar-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .radar-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid var(--terminal-green);
+            border-radius: 50%;
+            opacity: 0;
+            animation: radarPulse 3s ease-out infinite;
+        }
+
+        .radar-circle:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            animation-delay: 0s;
+        }
+
+        .radar-circle:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            animation-delay: 0.5s;
+        }
+
+        .radar-circle:nth-child(3) {
+            width: 600px;
+            height: 600px;
+            animation-delay: 1s;
+        }
+
+        .radar-circle:nth-child(4) {
+            width: 800px;
+            height: 800px;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes radarPulse {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            20% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1.5);
+            }
+        }
+
+        .scan-line {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 2px;
+            height: 400px;
+            background: linear-gradient(to bottom, transparent, var(--terminal-green), transparent);
+            transform-origin: center top;
+            transform: translate(-50%, -50%) rotate(0deg);
+            animation: radarScan 4s linear infinite;
+            opacity: 0.6;
+            box-shadow: 0 0 20px var(--terminal-green);
+        }
+
+        @keyframes radarScan {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .grid-pulse {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 136, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridPulse 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Boot terminal box */
+        .boot-terminal-box {
+            max-width: 900px;
+            position: relative;
+            z-index: 2;
+            background: rgba(10, 14, 20, 0.95);
+            border: 2px solid var(--terminal-green);
+            box-shadow: 0 0 40px var(--terminal-green);
+            border-radius: 8px;
+            overflow: hidden;
+            animation: boxGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes boxGlow {
+            from { box-shadow: 0 0 30px rgba(0, 255, 65, 0.5); }
+            to { box-shadow: 0 0 60px rgba(0, 255, 65, 0.8); }
+        }
+
+        .boot-header {
+            background: rgba(0, 255, 65, 0.1);
+            border-bottom: 1px solid var(--terminal-green);
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .boot-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .boot-dot.red {
+            background: var(--terminal-red);
+            box-shadow: 0 0 8px var(--terminal-red);
+        }
+
+        .boot-dot.yellow {
+            background: var(--terminal-yellow);
+            box-shadow: 0 0 8px var(--terminal-yellow);
+        }
+
+        .boot-dot.green {
+            background: var(--terminal-green);
+            box-shadow: 0 0 8px var(--terminal-green);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .boot-title {
+            margin-left: auto;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
         .boot-text {
-            max-width: 800px;
-            padding: 2rem;
+            padding: 3rem;
         }
 
         .boot-line {
             opacity: 0;
             animation: bootLine 0.1s ease forwards;
+            margin: 1.2rem 0;
+            font-size: 1.1rem;
+            letter-spacing: 0.05em;
         }
 
         @keyframes bootLine {
             to { opacity: 1; }
         }
 
-        /* Main container */
+        .boot-line.success::before {
+            content: '[✓] ';
+            color: var(--terminal-green);
+            font-weight: bold;
+        }
+
+        .boot-progress {
+            width: 100%;
+            height: 6px;
+            background: rgba(0, 255, 65, 0.15);
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+            border-radius: 3px;
+        }
+
+        .boot-progress-bar {
+            height: 100%;
+            background: var(--terminal-green);
+            box-shadow: 0 0 15px var(--terminal-green);
+            animation: bootProgress 3.5s ease-in-out forwards;
+            border-radius: 3px;
+        }
+
+        @keyframes bootProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* Container */
         .container {
             position: relative;
             z-index: 2;
@@ -144,11 +403,17 @@
             margin: 2rem 0;
             box-shadow: var(--glow);
             animation: terminalGlow 2s ease-in-out infinite alternate;
+            transition: all 0.3s ease;
         }
 
         @keyframes terminalGlow {
             from { box-shadow: 0 0 10px rgba(0, 255, 65, 0.5); }
             to { box-shadow: 0 0 30px rgba(0, 255, 65, 0.8), 0 0 60px rgba(0, 255, 65, 0.4); }
+        }
+
+        .terminal-window:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 50px rgba(0, 255, 65, 0.6), 0 0 80px rgba(0, 255, 65, 0.3);
         }
 
         .terminal-header {
@@ -286,84 +551,7 @@
             color: var(--terminal-green);
         }
 
-        /* Command buttons */
-        .command-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .cmd-btn {
-            background: transparent;
-            border: 2px solid var(--terminal-green);
-            color: var(--terminal-green);
-            padding: 0.75rem 2rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.95rem;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .cmd-btn::before {
-            content: '> ';
-            color: var(--terminal-cyan);
-        }
-
-        .cmd-btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--terminal-green);
-            transition: left 0.3s ease;
-            z-index: -1;
-        }
-
-        .cmd-btn:hover {
-            color: #000;
-            box-shadow: 0 0 20px var(--terminal-green);
-        }
-
-        .cmd-btn:hover::after {
-            left: 0;
-        }
-
-        /* Section styling */
-        section {
-            padding: 4rem 0;
-        }
-
-        .section-header {
-            font-family: 'Orbitron', monospace;
-            font-size: 2rem;
-            color: var(--terminal-cyan);
-            margin-bottom: 2rem;
-            text-shadow: 0 0 10px var(--terminal-cyan);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .section-header::before {
-            content: '//';
-            color: var(--text-dim);
-        }
-
-        .section-header::after {
-            content: '';
-            flex: 1;
-            height: 2px;
-            background: linear-gradient(90deg, var(--terminal-cyan), transparent);
-        }
-
-        /* Code block styling */
+        /* Code blocks */
         .code-block {
             background: rgba(0, 20, 0, 0.5);
             border-left: 3px solid var(--terminal-green);
@@ -403,11 +591,165 @@
         .function { color: var(--terminal-green); }
         .comment { color: var(--text-dim); opacity: 0.6; }
 
-        /* Skills Grid */
+        /* Command buttons */
+        .command-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .cmd-btn {
+            background: transparent;
+            border: 2px solid var(--terminal-green);
+            color: var(--terminal-green);
+            padding: 0.75rem 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cmd-btn::before {
+            content: '> ';
+            color: var(--terminal-cyan);
+        }
+
+        .cmd-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--terminal-green);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .cmd-btn:hover {
+            color: #000;
+            box-shadow: 0 0 20px var(--terminal-green);
+        }
+
+        .cmd-btn:hover::after {
+            left: 0;
+        }
+
+        /* Loading bar */
+        .loading-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(0, 255, 65, 0.2);
+            position: relative;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .loading-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0;
+            background: var(--terminal-green);
+            box-shadow: 0 0 10px var(--terminal-green);
+            animation: load 2s ease-in-out forwards;
+        }
+
+        @keyframes load {
+            to { width: 100%; }
+        }
+
+        /* Section styling */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-header {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            color: var(--terminal-cyan);
+            margin-bottom: 2rem;
+            text-shadow: 0 0 10px var(--terminal-cyan);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-header::before {
+            content: '//';
+            color: var(--text-dim);
+        }
+
+        .section-header::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--terminal-cyan), transparent);
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-box {
+            background: rgba(0, 255, 65, 0.05);
+            border: 2px solid var(--terminal-green);
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+            animation: scan 3s infinite;
+        }
+
+        @keyframes scan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .stat-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            color: var(--terminal-cyan);
+            text-shadow: 0 0 10px var(--terminal-cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* Skills */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
+            gap: 1.5rem;
         }
 
         .skill-category {
@@ -462,7 +804,7 @@
             color: var(--terminal-green);
         }
 
-        /* Experience Timeline */
+        /* Timeline */
         .timeline {
             position: relative;
             padding-left: 3rem;
@@ -482,6 +824,11 @@
         .timeline-item {
             margin-bottom: 3rem;
             position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
         }
 
         .timeline-item::before {
@@ -493,11 +840,6 @@
             color: var(--terminal-green);
             text-shadow: 0 0 10px var(--terminal-green);
             animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.1); }
         }
 
         .job-title {
@@ -542,7 +884,7 @@
             color: var(--terminal-green);
         }
 
-        /* Project Cards */
+        /* Projects */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -607,53 +949,7 @@
             margin-bottom: 1rem;
         }
 
-        /* Stats display */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .stat-box {
-            background: rgba(0, 255, 65, 0.05);
-            border: 2px solid var(--terminal-green);
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
-            animation: scan 3s infinite;
-        }
-
-        @keyframes scan {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .stat-number {
-            font-family: 'Orbitron', monospace;
-            font-size: 2.5rem;
-            color: var(--terminal-cyan);
-            text-shadow: 0 0 10px var(--terminal-cyan);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--text-dim);
-            font-size: 0.9rem;
-        }
-
-        /* Contact Links */
+        /* Contact */
         .contact-links {
             display: flex;
             gap: 2rem;
@@ -670,6 +966,7 @@
             border: 2px solid var(--terminal-green);
             transition: all 0.3s ease;
             position: relative;
+            overflow: hidden;
         }
 
         .contact-link::before {
@@ -700,8 +997,75 @@
             margin-bottom: 1rem;
         }
 
+        /* Scroll Animations */
+        .scroll-fade-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-slide-right {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-slide-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scroll-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
+
+        /* Ripple */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 255, 136, 0.5);
+            transform: scale(0);
+            animation: ripple-animation 0.6s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
+            body {
+                cursor: auto;
+            }
+
+            .cursor-dot,
+            .cursor-ring {
+                display: none;
+            }
+
             .ascii-art {
                 font-size: 0.4rem;
             }
@@ -723,35 +1087,16 @@
                 font-size: 1.5rem;
             }
         }
-
-        /* Loading animation */
-        .loading-bar {
-            width: 100%;
-            height: 4px;
-            background: rgba(0, 255, 65, 0.2);
-            position: relative;
-            overflow: hidden;
-            margin: 1rem 0;
-        }
-
-        .loading-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 0;
-            background: var(--terminal-green);
-            box-shadow: 0 0 10px var(--terminal-green);
-            animation: load 2s ease-in-out forwards;
-        }
-
-        @keyframes load {
-            to { width: 100%; }
-        }
     </style>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
     <!-- Matrix Rain Canvas -->
     <canvas id="matrix-canvas"></canvas>
 
@@ -760,14 +1105,39 @@
 
     <!-- Boot Sequence -->
     <div id="boot-sequence">
-        <div class="boot-text">
-            <div class="boot-line" style="animation-delay: 0s;">SYSTEM INITIALIZATION...</div>
-            <div class="boot-line" style="animation-delay: 0.5s;">LOADING KERNEL MODULES... [OK]</div>
-            <div class="boot-line" style="animation-delay: 1s;">MOUNTING FILESYSTEM... [OK]</div>
-            <div class="boot-line" style="animation-delay: 1.5s;">INITIALIZING NETWORK STACK... [OK]</div>
-            <div class="boot-line" style="animation-delay: 2s;">LOADING USER PROFILE: hrishikesh_nikam</div>
-            <div class="boot-line" style="animation-delay: 2.5s;">ESTABLISHING CONNECTION... [OK]</div>
-            <div class="boot-line" style="animation-delay: 3s;">SYSTEM READY.</div>
+        <div class="boot-container">
+            <!-- Pulsing Grid -->
+            <div class="grid-pulse"></div>
+            
+            <!-- Radar Effect -->
+            <div class="radar-bg">
+                <div class="radar-circle"></div>
+                <div class="radar-circle"></div>
+                <div class="radar-circle"></div>
+                <div class="radar-circle"></div>
+                <div class="scan-line"></div>
+            </div>
+
+            <!-- Terminal Box -->
+            <div class="boot-terminal-box">
+                <div class="boot-header">
+                    <div class="boot-dot red"></div>
+                    <div class="boot-dot yellow"></div>
+                    <div class="boot-dot green"></div>
+                    <div class="boot-title">system_boot.sh</div>
+                </div>
+                <div class="boot-text">
+                    <div class="boot-line success" style="animation-delay: 0s;">INITIALIZING SYSTEM</div>
+                    <div class="boot-line success" style="animation-delay: 0.8s;">LOADING SECURE KERNEL</div>
+                    <div class="boot-line success" style="animation-delay: 1.6s;">AUTHENTICATING: hrishikesh_nikam</div>
+                    <div class="boot-line success" style="animation-delay: 2.4s;">ESTABLISHING CONNECTION</div>
+                    <div class="boot-line success" style="animation-delay: 3.2s;">ACCESS GRANTED</div>
+                    
+                    <div class="boot-progress" style="animation-delay: 0.5s;">
+                        <div class="boot-progress-bar"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -825,21 +1195,21 @@
 
         <!-- Stats Section -->
         <section>
-            <div class="section-header">SYSTEM METRICS</div>
+            <div class="section-header scroll-fade-up">SYSTEM METRICS</div>
             <div class="stats-grid">
-                <div class="stat-box">
+                <div class="stat-box scroll-scale stagger-1">
                     <div class="stat-number">3+</div>
                     <div class="stat-label">Years Experience</div>
                 </div>
-                <div class="stat-box">
+                <div class="stat-box scroll-scale stagger-2">
                     <div class="stat-number">34%</div>
                     <div class="stat-label">Performance Boost</div>
                 </div>
-                <div class="stat-box">
+                <div class="stat-box scroll-scale stagger-3">
                     <div class="stat-number">92%</div>
                     <div class="stat-label">Issue Prevention</div>
                 </div>
-                <div class="stat-box">
+                <div class="stat-box scroll-scale stagger-4">
                     <div class="stat-number">45%</div>
                     <div class="stat-label">CI/CD Optimization</div>
                 </div>
@@ -848,8 +1218,8 @@
 
         <!-- Skills Section -->
         <section>
-            <div class="section-header">TECH STACK</div>
-            <div class="terminal-window">
+            <div class="section-header scroll-fade-up">TECH STACK</div>
+            <div class="terminal-window scroll-scale">
                 <div class="terminal-header">
                     <div class="terminal-button"></div>
                     <div class="terminal-button"></div>
@@ -858,7 +1228,7 @@
                 </div>
                 <div class="terminal-content">
                     <div class="skills-grid">
-                        <div class="skill-category">
+                        <div class="skill-category scroll-slide-right stagger-1">
                             <h3>Languages</h3>
                             <ul>
                                 <li>JavaScript / TypeScript</li>
@@ -868,7 +1238,7 @@
                                 <li>Java</li>
                             </ul>
                         </div>
-                        <div class="skill-category">
+                        <div class="skill-category scroll-slide-right stagger-2">
                             <h3>Frontend</h3>
                             <ul>
                                 <li>React</li>
@@ -877,7 +1247,7 @@
                                 <li>UI/UX Design</li>
                             </ul>
                         </div>
-                        <div class="skill-category">
+                        <div class="skill-category scroll-slide-right stagger-3">
                             <h3>Backend</h3>
                             <ul>
                                 <li>Node.js</li>
@@ -886,7 +1256,7 @@
                                 <li>Microservices</li>
                             </ul>
                         </div>
-                        <div class="skill-category">
+                        <div class="skill-category scroll-slide-right stagger-4">
                             <h3>Cloud & DevOps</h3>
                             <ul>
                                 <li>AWS (Lambda, EC2, S3)</li>
@@ -895,7 +1265,7 @@
                                 <li>Docker</li>
                             </ul>
                         </div>
-                        <div class="skill-category">
+                        <div class="skill-category scroll-slide-right stagger-5">
                             <h3>Tools & Methods</h3>
                             <ul>
                                 <li>Agile Development</li>
@@ -904,7 +1274,7 @@
                                 <li>AI-Assisted Coding</li>
                             </ul>
                         </div>
-                        <div class="skill-category">
+                        <div class="skill-category scroll-slide-right stagger-6">
                             <h3>Core Competencies</h3>
                             <ul>
                                 <li>System Architecture</li>
@@ -920,8 +1290,8 @@
 
         <!-- Experience Section -->
         <section id="experience">
-            <div class="section-header">WORK HISTORY</div>
-            <div class="terminal-window">
+            <div class="section-header scroll-fade-up">WORK HISTORY</div>
+            <div class="terminal-window scroll-scale">
                 <div class="terminal-header">
                     <div class="terminal-button"></div>
                     <div class="terminal-button"></div>
@@ -930,7 +1300,7 @@
                 </div>
                 <div class="terminal-content">
                     <div class="timeline">
-                        <div class="timeline-item">
+                        <div class="timeline-item scroll-slide-right">
                             <div class="job-title">INFOSYS LIMITED</div>
                             <div class="job-role">Technology Analyst</div>
                             <div class="job-period">July 2023 - July 2024 | Pune, India</div>
@@ -942,7 +1312,7 @@
                             </ul>
                         </div>
 
-                        <div class="timeline-item">
+                        <div class="timeline-item scroll-slide-right">
                             <div class="job-title">INFOSYS LIMITED</div>
                             <div class="job-role">Senior Systems Engineer</div>
                             <div class="job-period">July 2022 - July 2023 | Pune, India</div>
@@ -954,7 +1324,7 @@
                             </ul>
                         </div>
 
-                        <div class="timeline-item">
+                        <div class="timeline-item scroll-slide-right">
                             <div class="job-title">INFOSYS LIMITED</div>
                             <div class="job-role">Systems Engineer</div>
                             <div class="job-period">March 2021 - July 2022 | Pune, India</div>
@@ -972,9 +1342,9 @@
 
         <!-- Projects Section -->
         <section id="projects">
-            <div class="section-header">PROJECT ARCHIVES</div>
+            <div class="section-header scroll-fade-up">PROJECT ARCHIVES</div>
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card scroll-scale stagger-1">
                     <div class="project-id">001</div>
                     <h3 class="project-title">DevOps Networking Automation</h3>
                     <div class="project-meta">Northeastern University | December 2024</div>
@@ -992,7 +1362,7 @@
                     </ul>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card scroll-scale stagger-2">
                     <div class="project-id">002</div>
                     <h3 class="project-title">Reliable Transport Protocols</h3>
                     <div class="project-meta">Northeastern University | December 2024</div>
@@ -1014,8 +1384,8 @@
 
         <!-- Contact Section -->
         <section id="contact">
-            <div class="section-header">ESTABLISH CONNECTION</div>
-            <div class="terminal-window">
+            <div class="section-header scroll-fade-up">ESTABLISH CONNECTION</div>
+            <div class="terminal-window scroll-scale">
                 <div class="terminal-header">
                     <div class="terminal-button"></div>
                     <div class="terminal-button"></div>
@@ -1034,8 +1404,8 @@
 
                     <div class="contact-links">
                         <a href="mailto:nikam.h@northeastern.edu" class="contact-link">EMAIL</a>
-                        <a href="https://linkedin.com/in/hrishi16" target="_blank" class="contact-link">LINKEDIN</a>
-                        <a href="https://github.com/Hrishikesh16nikam" target="_blank" class="contact-link">GITHUB</a>
+                        <a href="https://linkedin.com/in/hrishikesh-nikam" target="_blank" class="contact-link">LINKEDIN</a>
+                        <a href="https://github.com/hrishikesh-nikam" target="_blank" class="contact-link">GITHUB</a>
                         <a href="tel:+16173717805" class="contact-link">PHONE</a>
                     </div>
                 </div>
@@ -1090,6 +1460,139 @@
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+        });
+
+        // Generate Floating Particles
+        const particlesContainer = document.getElementById("particles");
+        if (particlesContainer) {
+            for (let i = 0; i < 25; i++) {
+                const particle = document.createElement("div");
+                particle.className = "particle";
+                particle.style.left = Math.random() * 100 + "%";
+                particle.style.animationDelay = Math.random() * 15 + "s";
+                particle.style.animationDuration = (10 + Math.random() * 10) + "s";
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Custom Cursor Animation
+        const cursorDot = document.querySelector(".cursor-dot");
+        const cursorRing = document.querySelector(".cursor-ring");
+
+        if (cursorDot && cursorRing) {
+            let mouseX = 0;
+            let mouseY = 0;
+            let ringX = 0;
+            let ringY = 0;
+
+            document.addEventListener("mousemove", (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                
+                cursorDot.style.left = mouseX + "px";
+                cursorDot.style.top = mouseY + "px";
+            });
+
+            function animateRing() {
+                ringX += (mouseX - ringX) * 0.15;
+                ringY += (mouseY - ringY) * 0.15;
+                
+                cursorRing.style.left = ringX + "px";
+                cursorRing.style.top = ringY + "px";
+                
+                requestAnimationFrame(animateRing);
+            }
+            animateRing();
+
+            // Cursor hover effects
+            const interactiveElements = document.querySelectorAll("a, button, .terminal-window, .stat-box, .project-card, .skill-category");
+            
+            interactiveElements.forEach(el => {
+                el.addEventListener("mouseenter", () => {
+                    cursorDot.style.transform = "scale(2)";
+                    cursorRing.style.transform = "scale(1.5)";
+                    cursorRing.style.borderColor = "var(--terminal-cyan)";
+                });
+                
+                el.addEventListener("mouseleave", () => {
+                    cursorDot.style.transform = "scale(1)";
+                    cursorRing.style.transform = "scale(1)";
+                    cursorRing.style.borderColor = "var(--terminal-green)";
+                });
+            });
+        }
+
+        // Scroll Animation Observer
+        const scrollElements = document.querySelectorAll(".scroll-fade-up, .scroll-slide-right, .scroll-scale");
+
+        const elementInView = (el, offset = 100) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return elementTop <= (window.innerHeight || document.documentElement.clientHeight) - offset;
+        };
+
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 100)) {
+                    el.classList.add("visible");
+                }
+            });
+        };
+
+        window.addEventListener("scroll", handleScrollAnimation);
+        handleScrollAnimation();
+
+        // 3D Tilt on Terminal Windows
+        const terminalWindows = document.querySelectorAll(".terminal-window");
+        terminalWindows.forEach(window => {
+            window.addEventListener("mousemove", (e) => {
+                const rect = window.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const angleX = (y - centerY) / 30;
+                const angleY = (centerX - x) / 30;
+                window.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-5px)`;
+            });
+            window.addEventListener("mouseleave", () => {
+                window.style.transform = "perspective(1000px) rotateX(0) rotateY(0) translateY(0)";
+            });
+        });
+
+        // 3D Tilt on Project Cards
+        const projectCards = document.querySelectorAll(".project-card");
+        projectCards.forEach(card => {
+            card.addEventListener("mousemove", (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+            });
+            card.addEventListener("mouseleave", () => {
+                card.style.transform = "perspective(1000px) rotateX(0) rotateY(0) translateY(0)";
+            });
+        });
+
+        // Ripple Effect
+        const buttons = document.querySelectorAll(".cmd-btn, .contact-link");
+        buttons.forEach(button => {
+            button.addEventListener("click", function(e) {
+                const ripple = document.createElement("span");
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                ripple.style.width = ripple.style.height = size + "px";
+                ripple.style.left = x + "px";
+                ripple.style.top = y + "px";
+                ripple.classList.add("ripple");
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            });
         });
 
         // Smooth scroll
