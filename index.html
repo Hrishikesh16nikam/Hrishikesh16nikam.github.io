@@ -91,16 +91,20 @@
         }
 
         /* Custom Cursor */
+        /* Custom Cursor - Optimized for 60fps */
         .cursor-dot {
             width: 8px;
             height: 8px;
             background: var(--terminal-green);
             border-radius: 50%;
             position: fixed;
+            top: 0;
+            left: 0;
             pointer-events: none;
             z-index: 9998;
-            transition: transform 0.15s ease;
             box-shadow: 0 0 10px var(--terminal-green);
+            will-change: transform;
+            transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .cursor-ring {
@@ -109,10 +113,14 @@
             border: 2px solid var(--terminal-green);
             border-radius: 50%;
             position: fixed;
+            top: 0;
+            left: 0;
             pointer-events: none;
             z-index: 9997;
-            transition: all 0.2s ease;
             opacity: 0.6;
+            will-change: transform;
+            transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        border-color 0.2s ease;
         }
 
         /* Floating Particles */
@@ -403,7 +411,8 @@
             margin: 2rem 0;
             box-shadow: var(--glow);
             animation: terminalGlow 2s ease-in-out infinite alternate;
-            transition: all 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+            will-change: transform, box-shadow;
         }
 
         @keyframes terminalGlow {
@@ -708,7 +717,8 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+            will-change: transform;
         }
 
         .stat-box::before {
@@ -896,7 +906,8 @@
             border: 2px solid var(--terminal-green);
             padding: 2rem;
             position: relative;
-            transition: all 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+            will-change: transform;
         }
 
         .project-card::before {
@@ -1394,7 +1405,7 @@
                 <div class="terminal-content">
                     <div class="code-block" data-lang="json">
 <span class="code-line" data-line="1">{</span>
-<span class="code-line" data-line="2">  <span class="string">"email"</span>: <span class="string">"nikam.h@northeastern.edu"</span>,</span>
+<span class="code-line" data-line="2">  <span class="string">"email"</span>: <span class="string">"<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="741a1d1f15195a1c341a1b06001c1115070011061a5a111001">[email&#160;protected]</a>"</span>,</span>
 <span class="code-line" data-line="3">  <span class="string">"phone"</span>: <span class="string">"+1 (617) 371-7805"</span>,</span>
 <span class="code-line" data-line="4">  <span class="string">"location"</span>: <span class="string">"Boston, MA"</span>,</span>
 <span class="code-line" data-line="5">  <span class="string">"status"</span>: <span class="string">"Available for opportunities"</span></span>
@@ -1402,7 +1413,7 @@
                     </div>
 
                     <div class="contact-links">
-                        <a href="mailto:nikam.h@northeastern.edu" class="contact-link">EMAIL</a>
+                        <a href="/cdn-cgi/l/email-protection#a0cec9cbc1cd8ec8e0cecfd2d4c8c5c1d3d4c5d2ce8ec5c4d5" class="contact-link">EMAIL</a>
                         <a href="https://www.linkedin.com/in/hrishi16/" target="_blank" class="contact-link">LINKEDIN</a>
                         <a href="https://github.com/Hrishikesh16nikam" target="_blank" class="contact-link">GITHUB</a>
                         <a href="tel:+16173717805" class="contact-link">PHONE</a>
@@ -1422,7 +1433,7 @@
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Matrix Rain Effect
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
@@ -1453,7 +1464,7 @@
             }
         }
 
-        setInterval(drawMatrix, 35);
+        setInterval(drawMatrix, 50);
 
         // Resize canvas
         window.addEventListener('resize', () => {
@@ -1474,50 +1485,50 @@
             }
         }
 
-        // Custom Cursor Animation
+        // Optimized Custom Cursor - 60fps Performance
         const cursorDot = document.querySelector(".cursor-dot");
         const cursorRing = document.querySelector(".cursor-ring");
 
         if (cursorDot && cursorRing) {
-            let mouseX = 0;
-            let mouseY = 0;
-            let ringX = 0;
-            let ringY = 0;
+            let mouseX = 0, mouseY = 0;
+            let ringX = 0, ringY = 0;
 
+            // Use transform instead of left/top for better performance
             document.addEventListener("mousemove", (e) => {
                 mouseX = e.clientX;
                 mouseY = e.clientY;
                 
-                cursorDot.style.left = mouseX + "px";
-                cursorDot.style.top = mouseY + "px";
-            });
+                // Instant dot movement using transform (GPU accelerated)
+                cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+            }, { passive: true });
 
+            // Smooth ring follow with RAF
             function animateRing() {
-                ringX += (mouseX - ringX) * 0.15;
-                ringY += (mouseY - ringY) * 0.15;
+                ringX += (mouseX - ringX) * 0.2;
+                ringY += (mouseY - ringY) * 0.2;
                 
-                cursorRing.style.left = ringX + "px";
-                cursorRing.style.top = ringY + "px";
+                // Use transform for GPU acceleration
+                cursorRing.style.transform = `translate(${ringX}px, ${ringY}px)`;
                 
                 requestAnimationFrame(animateRing);
             }
             animateRing();
 
-            // Cursor hover effects
+            // Optimized hover effects with event delegation
             const interactiveElements = document.querySelectorAll("a, button, .terminal-window, .stat-box, .project-card, .skill-category");
             
             interactiveElements.forEach(el => {
                 el.addEventListener("mouseenter", () => {
-                    cursorDot.style.transform = "scale(2)";
-                    cursorRing.style.transform = "scale(1.5)";
+                    cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) scale(2)`;
+                    cursorRing.style.transform = `translate(${ringX}px, ${ringY}px) scale(1.5)`;
                     cursorRing.style.borderColor = "var(--terminal-cyan)";
-                });
+                }, { passive: true });
                 
                 el.addEventListener("mouseleave", () => {
-                    cursorDot.style.transform = "scale(1)";
-                    cursorRing.style.transform = "scale(1)";
+                    cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px) scale(1)`;
+                    cursorRing.style.transform = `translate(${ringX}px, ${ringY}px) scale(1)`;
                     cursorRing.style.borderColor = "var(--terminal-green)";
-                });
+                }, { passive: true });
             });
         }
 
