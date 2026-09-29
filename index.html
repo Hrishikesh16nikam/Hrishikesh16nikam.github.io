@@ -2035,7 +2035,52 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
+        // Cloudflare-style obfuscation, decoded locally so it works off Cloudflare too
+        function cfDecode(hex) {
+            const key = parseInt(hex.slice(0, 2), 16);
+            let out = '';
+            for (let i = 2; i < hex.length; i += 2) {
+                out += String.fromCharCode(parseInt(hex.slice(i, i + 2), 16) ^ key);
+            }
+            return out;
+        }
+
+        // Rewrite every obfuscated address into a real, clickable mailto link
+        function revealEmails() {
+            document.querySelectorAll('.__cf_email__').forEach(el => {
+                const hex = el.getAttribute('data-cfemail');
+                if (!hex) return;
+                let address;
+                try {
+                    address = cfDecode(hex);
+                } catch (err) {
+                    return;
+                }
+                const link = document.createElement('a');
+                link.href = 'mailto:' + address;
+                link.textContent = address;
+                link.className = el.className.replace('__cf_email__', '').trim();
+                el.replaceWith(link);
+            });
+
+            document.querySelectorAll('a[href*="/cdn-cgi/l/email-protection#"]').forEach(el => {
+                const hex = el.getAttribute('href').split('#')[1];
+                if (!hex) return;
+                try {
+                    el.setAttribute('href', 'mailto:' + cfDecode(hex));
+                } catch (err) {
+                    /* leave the link alone if the payload is malformed */
+                }
+            });
+        }
+
+        // run now, and again once the DOM is parsed, so nothing later can block it
+        try { revealEmails(); } catch (err) { console.error('email decode failed', err); }
+        document.addEventListener('DOMContentLoaded', () => {
+            try { revealEmails(); } catch (err) { console.error('email decode failed', err); }
+        });
+
         // Matrix Rain Effect
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
@@ -2337,15 +2382,6 @@
             document.querySelectorAll('.stat-number').forEach(el => statObserver.observe(el));
         }
 
-        // Reveal an email address without hardcoding it in the markup
-        function cfDecode(hex) {
-            const key = parseInt(hex.slice(0, 2), 16);
-            let out = '';
-            for (let i = 2; i < hex.length; i += 2) {
-                out += String.fromCharCode(parseInt(hex.slice(i, i + 2), 16) ^ key);
-            }
-            return out;
-        }
 
         function getEmail() {
             const mailto = document.querySelector('a[href^="mailto:"]');
@@ -2465,7 +2501,6 @@
                 ],
                 contact: () => [
                     ['Contact', 'head'],
-                    '  School    nikam.h@northeastern.edu',
                     ['  LinkedIn  <a href="https://www.linkedin.com/in/hrishi16/" target="_blank" rel="noopener">linkedin.com/in/hrishi16</a>', 'link'],
                     ['  GitHub    <a href="https://github.com/Hrishikesh16nikam" target="_blank" rel="noopener">github.com/Hrishikesh16nikam</a>', 'link'],
                     '  Phone     +1 (617) 371-7805',
