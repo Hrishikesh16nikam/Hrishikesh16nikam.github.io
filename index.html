@@ -509,35 +509,28 @@
 
         .glitch-text {
             font-family: 'Orbitron', monospace;
-            font-size: clamp(2rem, 4.4vw, 3.4rem);
-            font-weight: 700;
-            letter-spacing: 0.04em;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
             color: var(--terminal-green);
-            text-shadow:
-                0 0 8px rgba(0, 255, 65, 0.9),
-                0 0 20px rgba(0, 255, 65, 0.55),
-                0 0 36px rgba(0, 255, 65, 0.25);
+            text-shadow: var(--glow);
             position: relative;
             display: inline-block;
-            animation: glitchTitle 14s infinite;
+            animation: glitchTitle 10s infinite;
         }
 
         @keyframes glitchTitle {
-            0%, 97%, 100% {
-                text-shadow:
-                    0 0 8px rgba(0, 255, 65, 0.9),
-                    0 0 20px rgba(0, 255, 65, 0.55),
-                    0 0 36px rgba(0, 255, 65, 0.25);
+            0%, 95%, 100% { 
+                text-shadow: var(--glow);
             }
-            98% {
-                text-shadow:
-                    1px 1px rgba(255, 0, 60, 0.5),
-                    -1px -1px rgba(0, 255, 255, 0.5);
+            96% {
+                text-shadow: 
+                    2px 2px var(--terminal-red),
+                    -2px -2px var(--terminal-cyan);
             }
-            99% {
-                text-shadow:
-                    -1px 1px rgba(0, 255, 255, 0.5),
-                    1px -1px rgba(255, 0, 60, 0.5);
+            97% {
+                text-shadow: 
+                    -2px 2px var(--terminal-cyan),
+                    2px -2px var(--terminal-red);
             }
         }
 
@@ -932,7 +925,7 @@
         }
 
         .project-card {
-            background: #0a0e14;
+            background: rgba(10, 14, 20, 0.9);
             border: 2px solid var(--terminal-green);
             padding: 2rem;
             position: relative;
@@ -955,12 +948,11 @@
 
         .project-card:hover {
             transform: translateY(-5px);
-            border-color: var(--terminal-cyan);
-            box-shadow: 0 0 30px rgba(0, 255, 65, 0.4);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
         }
 
         .project-card:hover::before {
-            opacity: 0.55;
+            opacity: 1;
         }
 
         .project-id {
@@ -989,6 +981,26 @@
             color: var(--text-dim);
             font-size: 0.85rem;
             margin-bottom: 1rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 1.2rem;
+            color: var(--terminal-cyan);
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-bottom: 1px dashed var(--terminal-cyan);
+        }
+
+        .project-link::before {
+            content: '$ git clone ';
+            color: var(--text-dim);
+        }
+
+        .project-link:hover,
+        .project-link:focus-visible {
+            color: var(--terminal-green);
+            border-bottom-color: var(--terminal-green);
         }
 
         /* Contact */
@@ -1404,7 +1416,7 @@
             }
 
             .glitch-text {
-                font-size: 1.7rem;
+                font-size: 2rem;
             }
 
             .projects-grid,
@@ -1675,16 +1687,16 @@
                     <div class="stat-label">Years Experience</div>
                 </div>
                 <div class="stat-box scroll-scale stagger-2">
-                    <div class="stat-number">34%</div>
-                    <div class="stat-label">Performance Boost</div>
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Open-Source Systems Projects</div>
                 </div>
                 <div class="stat-box scroll-scale stagger-3">
-                    <div class="stat-number">92%</div>
-                    <div class="stat-label">Issue Prevention</div>
+                    <div class="stat-number">60+</div>
+                    <div class="stat-label">Automated Tests</div>
                 </div>
                 <div class="stat-box scroll-scale stagger-4">
-                    <div class="stat-number">45%</div>
-                    <div class="stat-label">CI/CD Optimization</div>
+                    <div class="stat-number">3.76</div>
+                    <div class="stat-label">Graduate GPA</div>
                 </div>
             </div>
         </section>
@@ -1929,6 +1941,83 @@
             <div class="projects-grid">
                 <div class="project-card scroll-scale stagger-1">
                     <div class="project-id">001</div>
+                    <h3 class="project-title">Triage Inbox</h3>
+                    <div class="project-meta">Personal Project | October 2026</div>
+                    <div class="code-block" data-lang="Python">
+<span class="code-line" data-line="1"><span class="comment"># redact, then chain-sign</span></span>
+<span class="code-line" data-line="2">text = <span class="function">redact</span>(raw)</span>
+<span class="code-line" data-line="3">mac = <span class="function">hmac</span>(key, prev + row)</span>
+<span class="code-line" data-line="4"><span class="keyword">assert</span> audit.<span class="function">verify</span>().ok</span>
+                    </div>
+                    <ul class="achievements">
+                        <li>Built a secure triage service for clinic voicemails and documents: transcription, PII redaction, and intent and urgency classification with urgent items queued first</li>
+                        <li>Implemented rotating refresh tokens with reuse detection that revokes the whole session family, plus role checks re-read from the database on every request</li>
+                        <li>Designed a tamper-evident audit log using an HMAC chain and append-only triggers, so any edited, reordered or deleted entry fails verification</li>
+                        <li>Covered token forgery, CSRF, path traversal and tampering with 60 tests in CI on Linux and Windows</li>
+                    </ul>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Security</span>
+                        <span class="tech-tag">SQLite</span>
+                        <span class="tech-tag">Threat Modeling</span>
+                        <span class="tech-tag">CI</span>
+                    </div>
+                    <a class="project-link" href="https://github.com/Hrishikesh16nikam/triage-inbox" target="_blank" rel="noopener">triage-inbox</a>
+                </div>
+
+                <div class="project-card scroll-scale stagger-2">
+                    <div class="project-id">002</div>
+                    <h3 class="project-title">L4/L7 Load Balancer</h3>
+                    <div class="project-meta">Personal Project | October 2026</div>
+                    <div class="code-block" data-lang="Go">
+<span class="code-line" data-line="1"><span class="comment">// route around slow backends</span></span>
+<span class="code-line" data-line="2">b, err := pool.<span class="function">Next</span>()</span>
+<span class="code-line" data-line="3"><span class="keyword">if</span> err != <span class="keyword">nil</span> { <span class="keyword">return</span> <span class="string">503</span> }</span>
+<span class="code-line" data-line="4">proxy.<span class="function">Forward</span>(b, req)</span>
+                    </div>
+                    <ul class="achievements">
+                        <li>Built a load balancer in Go with TCP (L4) and HTTP (L7) modes, using only the standard library</li>
+                        <li>Implemented round-robin and least-connections routing behind a pluggable interface</li>
+                        <li>Added active health checks with flap-preventing thresholds, passive failure detection, and automatic failover and recovery</li>
+                        <li>Exposed Prometheus metrics for requests, latency and backend health, with graceful connection draining on shutdown</li>
+                    </ul>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Go</span>
+                        <span class="tech-tag">TCP/IP</span>
+                        <span class="tech-tag">HTTP</span>
+                        <span class="tech-tag">Prometheus</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+                    <a class="project-link" href="https://github.com/Hrishikesh16nikam/go-loadbalancer" target="_blank" rel="noopener">go-loadbalancer</a>
+                </div>
+
+                <div class="project-card scroll-scale stagger-3">
+                    <div class="project-id">003</div>
+                    <h3 class="project-title">Collaborative Editor (CRDT)</h3>
+                    <div class="project-meta">Personal Project | October 2026</div>
+                    <div class="code-block" data-lang="JavaScript">
+<span class="code-line" data-line="1"><span class="comment">// converge in any order</span></span>
+<span class="code-line" data-line="2">a.<span class="function">receive</span>(opFromB);</span>
+<span class="code-line" data-line="3">b.<span class="function">receive</span>(opFromA);</span>
+<span class="code-line" data-line="4"><span class="function">assert</span>(a.<span class="function">eq</span>(b));</span>
+                    </div>
+                    <ul class="achievements">
+                        <li>Implemented a sequence CRDT (RGA) from scratch for real-time multi-user editing with offline support</li>
+                        <li>Wrote a minimal RFC 6455 WebSocket server in Go, handling framing, masking, fragmentation and cross-origin protection</li>
+                        <li>Verified convergence with 200 randomized simulations of three concurrent editors receiving operations in random order</li>
+                    </ul>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Go</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">CRDT</span>
+                        <span class="tech-tag">WebSocket</span>
+                        <span class="tech-tag">Distributed Systems</span>
+                    </div>
+                    <a class="project-link" href="https://github.com/Hrishikesh16nikam/crdt-editor" target="_blank" rel="noopener">crdt-editor</a>
+                </div>
+
+                <div class="project-card scroll-scale stagger-4">
+                    <div class="project-id">004</div>
                     <h3 class="project-title">DevOps Networking Automation</h3>
                     <div class="project-meta">Northeastern University | December 2024</div>
                     <div class="code-block" data-lang="C++">
@@ -1951,8 +2040,8 @@
                     </div>
                 </div>
 
-                <div class="project-card scroll-scale stagger-2">
-                    <div class="project-id">002</div>
+                <div class="project-card scroll-scale stagger-5">
+                    <div class="project-id">005</div>
                     <h3 class="project-title">Reliable Transport Protocols</h3>
                     <div class="project-meta">Northeastern University | December 2024</div>
                     <div class="code-block" data-lang="C++">
@@ -2012,17 +2101,15 @@
                     <div class="code-block" data-lang="json">
 <span class="code-line" data-line="1">{</span>
 <span class="code-line" data-line="2">  <span class="string">"email"</span>: <span class="string">"<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="741a1d1f15195a1c341a1b06001c1115070011061a5a111001">[email&#160;protected]</a>"</span>,</span>
-<span class="code-line" data-line="3">  <span class="string">"phone"</span>: <span class="string">"+1 (617) 371-7805"</span>,</span>
-<span class="code-line" data-line="4">  <span class="string">"location"</span>: <span class="string">"Boston, MA"</span>,</span>
-<span class="code-line" data-line="5">  <span class="string">"status"</span>: <span class="string">"Available for opportunities"</span></span>
-<span class="code-line" data-line="6">}</span>
+<span class="code-line" data-line="3">  <span class="string">"location"</span>: <span class="string">"Boston, MA"</span>,</span>
+<span class="code-line" data-line="4">  <span class="string">"status"</span>: <span class="string">"Available for opportunities"</span></span>
+<span class="code-line" data-line="5">}</span>
                     </div>
 
                     <div class="contact-links">
                         <a href="/cdn-cgi/l/email-protection#a0cec9cbc1cd8ec8e0cecfd2d4c8c5c1d3d4c5d2ce8ec5c4d5" class="contact-link">EMAIL</a>
                         <a href="https://www.linkedin.com/in/hrishi16/" target="_blank" class="contact-link">LINKEDIN</a>
                         <a href="https://github.com/Hrishikesh16nikam" target="_blank" class="contact-link">GITHUB</a>
-                        <a href="tel:+16173717805" class="contact-link">PHONE</a>
                         <button type="button" class="contact-link" id="copy-email">COPY EMAIL</button>
                     </div>
                 </div>
@@ -2228,9 +2315,23 @@
             });
         });
 
-        // Project cards deliberately have no 3D tilt: the perspective warp made
-        // the body text skew and blur, which is exactly what you don't want on
-        // a panel someone is trying to read. Hover is handled in CSS instead.
+        // 3D Tilt on Project Cards
+        const projectCards = document.querySelectorAll(".project-card");
+        projectCards.forEach(card => {
+            card.addEventListener("mousemove", (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+            });
+            card.addEventListener("mouseleave", () => {
+                card.style.transform = "perspective(1000px) rotateX(0) rotateY(0) translateY(0)";
+            });
+        });
 
         // Ripple Effect
         const buttons = document.querySelectorAll(".cmd-btn, .contact-link");
@@ -2489,15 +2590,17 @@
                 ],
                 projects: () => [
                     ['Selected projects', 'head'],
-                    '  001  DevOps Networking Automation    C++, sockets, 96% stable throughput',
-                    '  002  Reliable Transport Protocols    ABT, GBN, SR at 99.1% delivery',
+                    '  001  Triage Inbox                    PII redaction, token rotation, HMAC audit log',
+                    '  002  L4/L7 Load Balancer             Go, health checks, least connections',
+                    '  003  Collaborative Editor (CRDT)     RGA CRDT, offline sync, WebSockets',
+                    '  004  DevOps Networking Automation    C++, sockets, 96% stable throughput',
+                    '  005  Reliable Transport Protocols    ABT, GBN, SR at 99.1% delivery',
                     ['Run "goto projects" for details.', 'muted']
                 ],
                 contact: () => [
                     ['Contact', 'head'],
                     ['  LinkedIn  <a href="https://www.linkedin.com/in/hrishi16/" target="_blank" rel="noopener">linkedin.com/in/hrishi16</a>', 'link'],
                     ['  GitHub    <a href="https://github.com/Hrishikesh16nikam" target="_blank" rel="noopener">github.com/Hrishikesh16nikam</a>', 'link'],
-                    '  Phone     +1 (617) 371-7805',
                     '  Location  Boston, MA',
                     ['Run "email" to copy the address.', 'muted']
                 ],
