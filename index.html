@@ -1556,6 +1556,168 @@
                 text-decoration: underline;
             }
         }
+        /* ---------- Project boot sequence ----------
+           Each card renders like a terminal process starting up: a scan line
+           draws the card in from top to bottom, the title decrypts, code lines
+           type themselves out, then the bullets and tags come online. */
+        .proj-anim .project-card {
+            opacity: 0;
+            translate: 0 28px;
+        }
+        .proj-anim .project-card.booted {
+            animation: cardBoot 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) var(--d, 0s) forwards;
+        }
+        .projects-grid .project-card:nth-child(1) { --d: 0s; }
+        .projects-grid .project-card:nth-child(2) { --d: 0.15s; }
+        .projects-grid .project-card:nth-child(3) { --d: 0.3s; }
+        .projects-grid .project-card:nth-child(4) { --d: 0.1s; }
+        .projects-grid .project-card:nth-child(5) { --d: 0.25s; }
+        .projects-grid .project-card:nth-child(6) { --d: 0.4s; }
+        @keyframes cardBoot {
+            0%   { opacity: 0; translate: 0 28px; clip-path: inset(0 0 100% 0); }
+            15%  { opacity: 1; }
+            70%  { clip-path: inset(0 0 0 0); }
+            100% { opacity: 1; translate: 0 0; clip-path: inset(-80px -80px -80px -80px); } /* unclipped, so the hover glow shows */
+        }
+
+        /* The bright scan line that draws the card, reused on hover. */
+        .project-card::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--terminal-cyan), var(--terminal-green), transparent);
+            box-shadow: 0 0 12px var(--terminal-cyan);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .proj-anim .project-card.booted::after {
+            animation: scanDown 0.75s ease-in var(--d, 0s) 1;
+        }
+        .project-card:hover::after,
+        .proj-anim .project-card.booted:hover::after {
+            animation: scanDown 0.9s ease-in-out 0s 1;
+        }
+        @keyframes scanDown {
+            0%   { top: 0; opacity: 1; }
+            90%  { opacity: 1; }
+            100% { top: calc(100% - 3px); opacity: 0; }
+        }
+
+        /* Code lines type out one after another. */
+        .proj-anim .project-card .code-line {
+            clip-path: inset(0 100% 0 0);
+        }
+        .proj-anim .project-card.booted .code-line {
+            animation: typeLine 0.55s steps(24, end) calc(var(--d, 0s) + 0.55s + var(--l, 0) * 0.28s) forwards;
+        }
+        .project-card .code-line:nth-child(1) { --l: 0; }
+        .project-card .code-line:nth-child(2) { --l: 1; }
+        .project-card .code-line:nth-child(3) { --l: 2; }
+        .project-card .code-line:nth-child(4) { --l: 3; }
+        .project-card .code-line:nth-child(5) { --l: 4; }
+        .project-card .code-line:nth-child(6) { --l: 5; }
+        @keyframes typeLine {
+            to { clip-path: inset(0 0 0 0); }
+        }
+
+        /* A blinking cursor once the code has finished typing. */
+        .project-card .code-block::after {
+            content: '';
+            position: absolute;
+            right: 1.1rem;
+            bottom: 0.9rem;
+            width: 0.6ch;
+            height: 1.05em;
+            background: var(--terminal-green);
+            box-shadow: 0 0 6px var(--terminal-green);
+            opacity: 0;
+        }
+        .proj-anim .project-card.booted .code-block::after {
+            animation: cursorBlink 1s steps(1) calc(var(--d, 0s) + 1.8s) infinite;
+        }
+        @keyframes cursorBlink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        /* Bullets and tags come online after the code. */
+        .proj-anim .project-card .achievements li,
+        .proj-anim .project-card .tech-tag,
+        .proj-anim .project-card .project-link {
+            opacity: 0;
+            translate: -8px 0;
+        }
+        .proj-anim .project-card.booted .achievements li,
+        .proj-anim .project-card.booted .tech-tag,
+        .proj-anim .project-card.booted .project-link {
+            animation: comeOnline 0.4s ease-out forwards;
+        }
+        .proj-anim .project-card.booted .achievements li { animation-delay: calc(var(--d, 0s) + 1.5s + var(--l, 0) * 0.12s); }
+        .proj-anim .project-card.booted .tech-tag { animation-delay: calc(var(--d, 0s) + 2.1s + var(--l, 0) * 0.07s); }
+        .proj-anim .project-card.booted .project-link { animation-delay: calc(var(--d, 0s) + 2.5s); }
+        .project-card .achievements li:nth-child(2), .project-card .tech-tag:nth-child(2) { --l: 1; }
+        .project-card .achievements li:nth-child(3), .project-card .tech-tag:nth-child(3) { --l: 2; }
+        .project-card .achievements li:nth-child(4), .project-card .tech-tag:nth-child(4) { --l: 3; }
+        .project-card .achievements li:nth-child(5), .project-card .tech-tag:nth-child(5) { --l: 4; }
+        .project-card .tech-tag:nth-child(6) { --l: 5; }
+        @keyframes comeOnline {
+            to { opacity: 1; translate: 0 0; }
+        }
+
+        /* Hover: lift, cyan border, and the code block lights up. */
+        .project-card:hover .code-block {
+            border-left-color: var(--terminal-cyan);
+            background: rgba(0, 40, 30, 0.55);
+        }
+        .project-card .code-block {
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .proj-anim .project-card,
+            .proj-anim .project-card .code-line,
+            .proj-anim .project-card .achievements li,
+            .proj-anim .project-card .tech-tag,
+            .proj-anim .project-card .project-link {
+                opacity: 1 !important;
+                translate: none !important;
+                clip-path: none !important;
+                animation: none !important;
+            }
+            .project-card::after,
+            .project-card .code-block::after {
+                display: none;
+            }
+        }
+
+        @media print {
+            .proj-anim .project-card,
+            .proj-anim .project-card .code-line,
+            .proj-anim .project-card .achievements li,
+            .proj-anim .project-card .tech-tag,
+            .proj-anim .project-card .project-link {
+                opacity: 1 !important;
+                translate: none !important;
+                clip-path: none !important;
+            }
+        }
+        /* Links inside code blocks (like the email in the contact card)
+           take the color of the surrounding code instead of browser blue. */
+        .code-block a,
+        .code-block a:visited {
+            color: inherit;
+            text-decoration: underline dotted;
+            text-underline-offset: 3px;
+        }
+        .code-block a:hover,
+        .code-block a:focus-visible {
+            color: var(--terminal-cyan);
+            text-shadow: 0 0 8px var(--terminal-cyan);
+        }
+
     </style>
 </head>
 <body>
@@ -1942,7 +2104,7 @@
         <section id="projects">
             <div class="section-header scroll-fade-up">PROJECT ARCHIVES</div>
             <div class="projects-grid">
-                <div class="project-card scroll-scale stagger-1">
+                <div class="project-card">
                     <div class="project-id">001</div>
                     <h3 class="project-title">Triage Inbox</h3>
                     <div class="project-meta">Personal Project | October 2026</div>
@@ -1968,7 +2130,7 @@
                     <a class="project-link" href="https://github.com/Hrishikesh16nikam/triage-inbox" target="_blank" rel="noopener">triage-inbox</a>
                 </div>
 
-                <div class="project-card scroll-scale stagger-2">
+                <div class="project-card">
                     <div class="project-id">002</div>
                     <h3 class="project-title">L4/L7 Load Balancer</h3>
                     <div class="project-meta">Personal Project | October 2026</div>
@@ -1994,7 +2156,7 @@
                     <a class="project-link" href="https://github.com/Hrishikesh16nikam/go-loadbalancer" target="_blank" rel="noopener">go-loadbalancer</a>
                 </div>
 
-                <div class="project-card scroll-scale stagger-3">
+                <div class="project-card">
                     <div class="project-id">003</div>
                     <h3 class="project-title">Collaborative Editor (CRDT)</h3>
                     <div class="project-meta">Personal Project | October 2026</div>
@@ -2019,7 +2181,7 @@
                     <a class="project-link" href="https://github.com/Hrishikesh16nikam/crdt-editor" target="_blank" rel="noopener">crdt-editor</a>
                 </div>
 
-                <div class="project-card scroll-scale stagger-4">
+                <div class="project-card">
                     <div class="project-id">004</div>
                     <h3 class="project-title">DevOps Networking Automation</h3>
                     <div class="project-meta">Northeastern University | December 2024</div>
@@ -2043,7 +2205,7 @@
                     </div>
                 </div>
 
-                <div class="project-card scroll-scale stagger-5">
+                <div class="project-card">
                     <div class="project-id">005</div>
                     <h3 class="project-title">Reliable Transport Protocols</h3>
                     <div class="project-meta">Northeastern University | December 2024</div>
@@ -2318,23 +2480,7 @@
             });
         });
 
-        // 3D Tilt on Project Cards
-        const projectCards = document.querySelectorAll(".project-card");
-        projectCards.forEach(card => {
-            card.addEventListener("mousemove", (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / 20;
-                const rotateY = (centerX - x) / 20;
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
-            });
-            card.addEventListener("mouseleave", () => {
-                card.style.transform = "perspective(1000px) rotateX(0) rotateY(0) translateY(0)";
-            });
-        });
+        // Project cards: see the "Project boot sequence" script below.
 
         // Ripple Effect
         const buttons = document.querySelectorAll(".cmd-btn, .contact-link");
@@ -2728,6 +2874,55 @@
             write('Portfolio OS v2.0 -- shell ready.', 'head');
             write('Type "help" for commands, or try "whoami".', 'muted');
         }
+    </script>
+    <script>
+        // Project boot sequence: cards boot when they scroll into view, and
+        // each title "decrypts" from random characters into its real name.
+        (() => {
+            const cards = document.querySelectorAll('.projects-grid .project-card');
+            if (!cards.length || !('IntersectionObserver' in window)) return;
+            const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            document.documentElement.classList.add('proj-anim');
+            if (reduced) {
+                cards.forEach((c) => c.classList.add('booted'));
+                return;
+            }
+
+            const GLYPHS = '01<>/\\{}[]#$%&*+=?ABCDEFXYZ';
+            const decrypt = (el, startDelay) => {
+                const finalText = el.textContent;
+                el.setAttribute('aria-label', finalText);
+                const total = 700;
+                let start = null;
+                const frame = (t) => {
+                    if (start === null) start = t;
+                    const progress = Math.min(1, (t - start) / total);
+                    const revealed = Math.floor(progress * finalText.length);
+                    let out = '';
+                    for (let i = 0; i < finalText.length; i++) {
+                        const ch = finalText[i];
+                        out += i < revealed || ch === ' ' ? ch : GLYPHS[(Math.random() * GLYPHS.length) | 0];
+                    }
+                    el.textContent = out;
+                    if (progress < 1) requestAnimationFrame(frame);
+                    else el.textContent = finalText;
+                };
+                setTimeout(() => requestAnimationFrame(frame), startDelay);
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    const card = entry.target;
+                    observer.unobserve(card);
+                    card.classList.add('booted');
+                    const delay = parseFloat(getComputedStyle(card).getPropertyValue('--d')) || 0;
+                    const title = card.querySelector('.project-title');
+                    if (title) decrypt(title, delay * 1000 + 250);
+                });
+            }, { threshold: 0.15 });
+            cards.forEach((c) => observer.observe(c));
+        })();
     </script>
 </body>
 </html>
