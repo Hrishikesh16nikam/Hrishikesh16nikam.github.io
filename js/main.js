@@ -424,7 +424,7 @@ if (shellOutput && shellInput) {
         ],
         experience: () => [
             ['Work history', 'head'],
-            '  IBM         Software Developer Intern           Jul 2026 - Aug 2026',
+            '  IBM         Software Developer Intern           Jun 2026 - Aug 2026',
             '  Cybersenz   Software Development Co-op          Jan 2026 - Jul 2026',
             '  Infosys     Technology Analyst                  Jul 2023 - Jul 2024',
             '  Infosys     Senior Systems Engineer             Jul 2022 - Jul 2023',
