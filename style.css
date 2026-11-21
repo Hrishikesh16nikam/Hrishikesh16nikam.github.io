@@ -256,3 +256,5 @@
 @media (min-width: 761px) { .projects-grid .project-art { height: 225px; min-height: 225px; } }
 @media (max-width: 760px) { .projects-grid .project-art { height: 205px; min-height: 205px; } }
 @media (max-width: 420px) { .projects-grid .project-art { height: 188px; min-height: 188px; } }
+
+.resume-grid.single{grid-template-columns:minmax(0,640px)}
