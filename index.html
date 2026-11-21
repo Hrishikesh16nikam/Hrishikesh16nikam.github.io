@@ -1,624 +1,132 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hrishikesh Nikam // Software Engineer</title>
-    <meta name="description" content="Hrishikesh Nikam - Software Engineer. Full-stack development, cloud infrastructure, and AI agent workflows. MS Computer Engineering at Northeastern University, Boston.">
-    <meta name="author" content="Hrishikesh Nikam">
-    <meta name="theme-color" content="#00ff41">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Hrishikesh Nikam - Software Engineer">
-    <meta property="og:description" content="Full-stack development, cloud infrastructure, and AI agent workflows. Most recently building AI-driven FedRAMP compliance tooling at IBM.">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Hrishikesh Nikam - Software Engineer">
-    <meta name="twitter:description" content="Full-stack development, cloud infrastructure, and AI agent workflows.">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Ctext x='4' y='23' font-family='monospace' font-size='20' fill='%2300ff41'%3E%3E%3C/text%3E%3C/svg%3E">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-</head>
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="#0a1512" name="theme-color"/>
+<meta content="Hrishikesh Nikam is a software engineer in Boston. He builds useful full-stack software, AI-powered applications and customer-facing systems from problem discovery to production." name="description"/>
+<meta content="Hrishikesh Nikam | Software Engineer &amp; Forward Deployed Engineer" property="og:title"/>
+<meta content="Turning complex problems into software people can use. Explore my work, experience, and projects." property="og:description"/>
+<title>Hrishikesh Nikam | Software Engineer &amp; Forward Deployed Engineer</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<meta content="website" property="og:type"/><meta content="https://hrishikesh16nikam.github.io/" property="og:url"/><meta content="https://hrishikesh16nikam.github.io/assets/social-preview.png" property="og:image"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="summary_large_image" name="twitter:card"/><meta content="Hrishikesh Nikam | Software Engineer &amp; Forward Deployed Engineer" name="twitter:title"/><meta content="I turn complex problems into software people can use." name="twitter:description"/><meta content="https://hrishikesh16nikam.github.io/assets/social-preview.png" name="twitter:image"/><link href="assets/favicon.svg" rel="icon"/><link href="assets/apple-touch-icon.png" rel="apple-touch-icon"/><meta content="Hrishikesh Nikam — Software Engineer and Forward Deployed Engineer portfolio" property="og:image:alt"/></head>
 <body>
-    <!-- Scroll Progress -->
-    <div class="scroll-progress"></div>
-
-    <!-- Fixed Terminal Nav -->
-    <nav class="topnav" aria-label="Section navigation">
-        <span class="nav-brand">root@hrishikesh</span>
-        <a href="#metrics">metrics</a>
-        <a href="#stack">stack</a>
-        <a href="#experience">experience</a>
-        <a href="#education">education</a>
-        <a href="#projects">projects</a>
-        <a href="#terminal">terminal</a>
-        <a href="#contact">contact</a>
-        <a href="resume.pdf" class="nav-resume" download="Hrishikesh_Nikam_Resume.pdf">&darr; resume</a>
-        <span class="nav-status"><span class="live-dot"></span><span id="nav-clock">--:--:--</span></span>
-    </nav>
-
-    <!-- Custom Cursor -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-ring"></div>
-
-    <!-- Floating Particles -->
-    <div class="particles" id="particles"></div>
-
-    <!-- Matrix Rain Canvas -->
-    <canvas id="matrix-canvas"></canvas>
-
-    <!-- Grid Background -->
-    <div class="grid-bg"></div>
-
-    <!-- Boot Sequence -->
-    <div id="boot-sequence">
-        <div class="boot-container">
-            <!-- Pulsing Grid -->
-            <div class="grid-pulse"></div>
-            
-            <!-- Radar Effect -->
-            <div class="radar-bg">
-                <div class="radar-circle"></div>
-                <div class="radar-circle"></div>
-                <div class="radar-circle"></div>
-                <div class="radar-circle"></div>
-                <div class="scan-line"></div>
-            </div>
-
-            <!-- Terminal Box -->
-            <div class="boot-terminal-box">
-                <div class="boot-header">
-                    <div class="boot-dot red"></div>
-                    <div class="boot-dot yellow"></div>
-                    <div class="boot-dot green"></div>
-                    <div class="boot-title">system_boot.sh</div>
-                </div>
-                <div class="boot-text">
-                    <div class="boot-line success" style="animation-delay: 0s;">INITIALIZING SYSTEM</div>
-                    <div class="boot-line success" style="animation-delay: 0.8s;">LOADING SECURE KERNEL</div>
-                    <div class="boot-line success" style="animation-delay: 1.6s;">AUTHENTICATING: hrishikesh_nikam</div>
-                    <div class="boot-line success" style="animation-delay: 2.4s;">ESTABLISHING CONNECTION</div>
-                    <div class="boot-line success" style="animation-delay: 3.2s;">ACCESS GRANTED</div>
-                    
-                    <div class="boot-progress" style="animation-delay: 0.5s;">
-                        <div class="boot-progress-bar"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <div class="terminal-window">
-                <div class="terminal-header">
-                    <div class="terminal-button"></div>
-                    <div class="terminal-button"></div>
-                    <div class="terminal-button"></div>
-                    <div class="terminal-title">root@hrishikesh:~</div>
-                </div>
-                <div class="terminal-content">
-                    <div class="ascii-art" aria-label="Hrishikesh">
- _   _      _     _     _ _             _
-| | | |_ __(_)___| |__ (_) | _____  ___| |__
-| |_| | '__| / __| '_ \| | |/ / _ \/ __| '_ \
-|  _  | |  | \__ \ | | | |   <  __/\__ \ | | |
-|_| |_|_|  |_|___/_| |_|_|_|\_\___||___/_| |_|
-    </div>
-                    
-                    <div class="typing-text">
-                        <span class="prompt">root@system:~$</span> whoami<span class="cursor"></span>
-                    </div>
-                    
-                    <h1 class="glitch-text">HRISHIKESH NIKAM</h1>
-                    
-                    <div class="code-block" data-lang="bash">
-<span class="code-line" data-line="1"><span class="keyword">export</span> <span class="string">ROLE</span>=<span class="string">"Software Engineer & Systems Architect"</span></span>
-<span class="code-line" data-line="2"><span class="keyword">export</span> <span class="string">FOCUS</span>=<span class="string">"Full-Stack Development | Cloud Infrastructure | Network Engineering"</span></span>
-<span class="code-line" data-line="3"><span class="keyword">export</span> <span class="string">EDUCATION</span>=<span class="string">"MS Computer Engineering @ Northeastern, Dec 2026"</span></span>
-<span class="code-line" data-line="4"><span class="keyword">export</span> <span class="string">LATEST</span>=<span class="string">"Software Developer Intern @ IBM, Lowell MA"</span></span>
-                    </div>
-
-                    <div class="status-bar">
-                        <div class="status-item">TypeScript / React</div>
-                        <div class="status-item">Go / Python</div>
-                        <div class="status-item">AWS / Docker</div>
-                        <div class="status-item">CI/CD</div>
-                        <div class="status-item">AI Agents</div>
-                        <div class="status-item">Networks / Security</div>
-                    </div>
-
-                    <div class="loading-bar"></div>
-
-                    <div class="command-buttons">
-                        <a href="#experience" class="cmd-btn">view_experience</a>
-                        <a href="#projects" class="cmd-btn">show_projects</a>
-                        <a href="#contact" class="cmd-btn">establish_connection</a>
-                        <a href="resume.pdf" class="cmd-btn" download="Hrishikesh_Nikam_Resume.pdf">download_resume</a>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <!-- Stats Section -->
-        <section id="metrics">
-            <div class="section-header scroll-fade-up">SYSTEM METRICS</div>
-            <div class="stats-grid">
-                <div class="stat-box scroll-scale stagger-1">
-                    <div class="stat-number">4+</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
-                <div class="stat-box scroll-scale stagger-2">
-                    <div class="stat-number">4</div>
-                    <div class="stat-label">Open-Source Projects</div>
-                </div>
-                <div class="stat-box scroll-scale stagger-3">
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label">Automated Tests</div>
-                </div>
-                <div class="stat-box scroll-scale stagger-4">
-                    <div class="stat-number">3.76</div>
-                    <div class="stat-label">Graduate GPA</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="stack">
-            <div class="section-header scroll-fade-up">TECH STACK</div>
-            <div class="terminal-window no-tilt scroll-scale">
-                <div class="terminal-header">
-                    <div class="terminal-button"></div>
-                    <div class="terminal-button"></div>
-                    <div class="terminal-button"></div>
-                    <div class="terminal-title">skills.sh --list-all</div>
-                </div>
-                <div class="terminal-content">
-                    <div class="skills-grid">
-                        <div class="skill-category scroll-slide-right stagger-1">
-                            <h3>Languages</h3>
-                            <ul>
-                                <li>Python</li>
-                                <li>C / C++</li>
-                                <li>Java</li>
-                                <li>JavaScript / TypeScript</li>
-                                <li>Go</li>
-                            </ul>
-                        </div>
-                        <div class="skill-category scroll-slide-right stagger-2">
-                            <h3>Networking</h3>
-                            <ul>
-                                <li>TCP/IP, DNS, DHCP, VPN</li>
-                                <li>Routing &amp; Switching</li>
-                                <li>Wireshark, Packet Analysis</li>
-                                <li>ns-3 Network Simulation</li>
-                            </ul>
-                        </div>
-                        <div class="skill-category scroll-slide-right stagger-3">
-                            <h3>Cybersecurity</h3>
-                            <ul>
-                                <li>Threat Analysis</li>
-                                <li>Vulnerability Management</li>
-                                <li>SIEM &amp; Incident Response</li>
-                                <li>Risk Assessment</li>
-                            </ul>
-                        </div>
-                        <div class="skill-category scroll-slide-right stagger-4">
-                            <h3>Cloud &amp; Infrastructure</h3>
-                            <ul>
-                                <li>AWS, Azure</li>
-                                <li>Docker &amp; Containers</li>
-                                <li>Virtual Machines</li>
-                                <li>Infrastructure Monitoring</li>
-                            </ul>
-                        </div>
-                        <div class="skill-category scroll-slide-right stagger-5">
-                            <h3>Software Engineering</h3>
-                            <ul>
-                                <li>REST APIs, Git</li>
-                                <li>CI/CD, Jenkins, Azure DevOps</li>
-                                <li>Testing &amp; Debugging</li>
-                                <li>Performance Evaluation</li>
-                            </ul>
-                        </div>
-                        <div class="skill-category scroll-slide-right stagger-6">
-                            <h3>AI &amp; Agents</h3>
-                            <ul>
-                                <li>Agentic Workflows</li>
-                                <li>MCP Tooling</li>
-                                <li>LLM Orchestration</li>
-                                <li>Prompt Engineering</li>
-                            </ul>
-                        </div>
-                        <div class="skill-category scroll-slide-right stagger-1">
-                            <h3>Security &amp; Compliance</h3>
-                            <ul>
-                                <li>FedRAMP Lifecycle</li>
-                                <li>OSCAL (SSP, AR, POA&amp;M)</li>
-                                <li>NIST SP 800-53</li>
-                                <li>AWS Conformance Packs</li>
-                            </ul>
-                        </div>
-                        <div class="skill-category scroll-slide-right stagger-2">
-                            <h3>Tools &amp; Platforms</h3>
-                            <ul>
-                                <li>Linux, Kali</li>
-                                <li>Python Automation</li>
-                                <li>React, Node.js</li>
-                                <li>Documentation</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience">
-            <div class="section-header scroll-fade-up">WORK HISTORY</div>
-            <div class="terminal-window no-tilt scroll-scale">
-                <div class="terminal-header">
-                    <div class="terminal-button"></div>
-                    <div class="terminal-button"></div>
-                    <div class="terminal-button"></div>
-                    <div class="terminal-title">cat /var/log/experience.log</div>
-                </div>
-                <div class="terminal-content">
-                    <div class="timeline">
-                        <div class="timeline-item featured scroll-slide-right">
-                            <div class="job-title">IBM<span class="job-badge"><span class="dot"></span>MOST RECENT</span></div>
-                            <div class="job-role">Software Developer Intern</div>
-                            <div class="job-period">June 2026 - August 2026 | Lowell, MA</div>
-                            <ul class="achievements">
-                                <li>Built the AI-Driven Insights workflow inside IBM Bob, an AI-powered FedRAMP compliance engine, guiding engineers through Select Finding, Explain Finding, Remediation Guidance, and Re-Validation for compliance gaps</li>
-                                <li>Added decision-branching logic after SSP creation, introducing two conditional flows, and diagrammed end-to-end architecture across all four workflows spanning the IDE, CI/CD pipeline, and compliance engine</li>
-                                <li>Authored setup and configuration documentation for the compliance engine, cutting new-engineer onboarding time by 25%</li>
-                                <li>Completed IBM's internal secure-SDLC training on data privacy and incident response</li>
-                            </ul>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">AI Agents</span>
-                                <span class="tech-tag">FedRAMP</span>
-                                <span class="tech-tag">OSCAL</span>
-                                <span class="tech-tag">CI/CD</span>
-                                <span class="tech-tag">Secure SDLC</span>
-                                <span class="tech-tag">System Architecture</span>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item scroll-slide-right">
-                            <div class="job-title">CYBERSENZ</div>
-                            <div class="job-role">Software Development Co-op</div>
-                            <div class="job-period">January 2026 - July 2026 | Silicon Valley, CA</div>
-                            <ul class="achievements">
-                                <li>Built cybersenz.com from the ground up, including multi-page site architecture, a dynamic job-listings module, the SecureCRM product landing page, and spam-protected contact and application forms</li>
-                                <li>Designed an end-to-end AI scheduling pipeline for a personal injury clinic, automating referral intake from law firms, lien-agreement population, patient record creation, and multi-location AI voice agent scheduling</li>
-                                <li>Built AI intake agents for voicemail and eFax handling, covering transcription, urgency classification, and routing</li>
-                                <li>Implemented HIPAA-aligned PHI handling, access controls, and audit logging across the systems</li>
-                            </ul>
-                            <div class="tech-tags">
-                                <span class="tech-tag">AI Agents</span>
-                                <span class="tech-tag">Web Development</span>
-                                <span class="tech-tag">Workflow Automation</span>
-                                <span class="tech-tag">Voice Agents</span>
-                                <span class="tech-tag">HIPAA</span>
-                                <span class="tech-tag">Access Control</span>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item scroll-slide-right">
-                            <div class="job-title">INFOSYS LIMITED</div>
-                            <div class="job-role">Technology Analyst</div>
-                            <div class="job-period">July 2023 - July 2024 | Pune, India</div>
-                            <ul class="achievements">
-                                <li>Engineered TypeScript and React components integrated with backend APIs, improving customer-facing performance by 34%</li>
-                                <li>Structured end-to-end feature development pipelines using AWS services and GitHub Actions, reducing deployment friction by 39%</li>
-                                <li>Synthesized user feedback into well-defined user stories, enabling 27% faster development cycles</li>
-                                <li>Monitored production service performance, proactively resolving 92% of issues before customer escalation</li>
-                            </ul>
-                            <div class="tech-tags">
-                                <span class="tech-tag">TypeScript</span>
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">AWS</span>
-                                <span class="tech-tag">GitHub Actions</span>
-                                <span class="tech-tag">REST APIs</span>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item scroll-slide-right">
-                            <div class="job-title">INFOSYS LIMITED</div>
-                            <div class="job-role">Senior Systems Engineer</div>
-                            <div class="job-period">July 2022 - July 2023 | Pune, India</div>
-                            <ul class="achievements">
-                                <li>Implemented scalable backend modules in Go and Python, enhancing request throughput by 31%</li>
-                                <li>Optimized CI workflows through automated testing, decreasing release latency by 45%</li>
-                                <li>Collaborated with client-facing teams, reducing post-deployment friction by 36%</li>
-                                <li>Refined API reliability through structured error-handling, increasing uptime by 28%</li>
-                            </ul>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Go</span>
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">Microservices</span>
-                                <span class="tech-tag">CI/CD</span>
-                                <span class="tech-tag">Automated Testing</span>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item scroll-slide-right">
-                            <div class="job-title">INFOSYS LIMITED</div>
-                            <div class="job-role">Systems Engineer</div>
-                            <div class="job-period">November 2020 - July 2022 | Pune, India</div>
-                            <ul class="achievements">
-                                <li>Developed React and TypeScript UI components, improving interface clarity by 29%</li>
-                                <li>Automated regression suites and unit tests, increasing test coverage by 42%</li>
-                                <li>Integrated cloud-based monitoring pipelines, shortening defect resolution time by 33%</li>
-                                <li>Executed user-focused enhancements, improving adoption metrics for product features</li>
-                            </ul>
-                            <div class="tech-tags">
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">TypeScript</span>
-                                <span class="tech-tag">Regression Testing</span>
-                                <span class="tech-tag">Cloud Monitoring</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Education Section -->
-        <section id="education">
-            <div class="section-header scroll-fade-up">EDUCATION</div>
-            <div class="terminal-window no-tilt scroll-scale">
-                <div class="terminal-header">
-                    <div class="terminal-button"></div>
-                    <div class="terminal-button"></div>
-                    <div class="terminal-button"></div>
-                    <div class="terminal-title">education.log</div>
-                </div>
-                <div class="terminal-content">
-                    <div class="timeline">
-                        <div class="timeline-item featured scroll-slide-right">
-                            <div class="job-title">NORTHEASTERN UNIVERSITY<span class="job-badge"><span class="dot"></span>IN PROGRESS</span></div>
-                            <div class="job-role">Master of Science, Computer Engineering</div>
-                            <div class="job-period">Expected December 2026 | Boston, MA | GPA 3.76 / 4.0</div>
-                            <ul class="achievements">
-                                <li>Concentration in Computer Networks and Security</li>
-                                <li>Coursework: Fundamentals of Computer Networks, Computer Hardware Security, Computer Systems</li>
-                            </ul>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Computer Networks</span>
-                                <span class="tech-tag">Hardware Security</span>
-                                <span class="tech-tag">Computer Systems</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects">
-            <div class="section-header scroll-fade-up">PROJECT ARCHIVES</div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-id">001</div>
-                    <h3 class="project-title">House Rota</h3>
-                    <div class="project-meta">Personal Project | November 2026</div>
-                    <div class="code-block" data-lang="TypeScript">
-<span class="code-line" data-line="1"><span class="comment">// plan the whole week at once</span></span>
-<span class="code-line" data-line="2"><span class="keyword">const</span> plan = <span class="function">schedule</span>(week)</span>
-<span class="code-line" data-line="3"><span class="function">assert</span>(<span class="function">noDoubleDuties</span>(plan))</span>
-<span class="code-line" data-line="4">push.<span class="function">notify</span>(plan.tonight)</span>
-                    </div>
-                    <ul class="achievements">
-                        <li>Built an installable web app for my 6-person house that rotates weekly duties and daily trash, with swaps, absences and anonymous nudges</li>
-                        <li>Wrote a scheduler that plans every duty together under hard rules (washroom eligibility, no double duties) and balances effort points the house votes on</li>
-                        <li>Implemented Web Push on the Web Crypto API (RFC 8291 encryption, RFC 8292 VAPID) with reminders from a 15-minute cron, running at $0 a month on Cloudflare</li>
-                        <li>Secured PIN sign-in with peppered hashes, rate limits, single-use invite links and an append-only activity log, covered by 43 tests in CI</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span class="tech-tag">TypeScript</span>
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Cloudflare Workers</span>
-                        <span class="tech-tag">D1</span>
-                        <span class="tech-tag">Web Push</span>
-                        <span class="tech-tag">PWA</span>
-                    </div>
-                    <a class="project-link" href="https://github.com/Hrishikesh16nikam/house-rota" target="_blank" rel="noopener">house-rota</a>
-                </div>
-                <div class="project-card">
-                    <div class="project-id">002</div>
-                    <h3 class="project-title">Triage Inbox</h3>
-                    <div class="project-meta">Personal Project | October 2026</div>
-                    <div class="code-block" data-lang="Python">
-<span class="code-line" data-line="1"><span class="comment"># redact, then chain-sign</span></span>
-<span class="code-line" data-line="2">text = <span class="function">redact</span>(raw)</span>
-<span class="code-line" data-line="3">mac = <span class="function">hmac</span>(key, prev + row)</span>
-<span class="code-line" data-line="4"><span class="keyword">assert</span> audit.<span class="function">verify</span>().ok</span>
-                    </div>
-                    <ul class="achievements">
-                        <li>Built a secure triage service for clinic voicemails and documents: transcription, PII redaction, and intent and urgency classification with urgent items queued first</li>
-                        <li>Implemented rotating refresh tokens with reuse detection that revokes the whole session family, plus role checks re-read from the database on every request</li>
-                        <li>Designed a tamper-evident audit log using an HMAC chain and append-only triggers, so any edited, reordered or deleted entry fails verification</li>
-                        <li>Covered token forgery, CSRF, path traversal and tampering with 60 tests in CI on Linux and Windows</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Security</span>
-                        <span class="tech-tag">SQLite</span>
-                        <span class="tech-tag">Threat Modeling</span>
-                        <span class="tech-tag">CI</span>
-                    </div>
-                    <a class="project-link" href="https://github.com/Hrishikesh16nikam/triage-inbox" target="_blank" rel="noopener">triage-inbox</a>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-id">003</div>
-                    <h3 class="project-title">L4/L7 Load Balancer</h3>
-                    <div class="project-meta">Personal Project | October 2026</div>
-                    <div class="code-block" data-lang="Go">
-<span class="code-line" data-line="1"><span class="comment">// route around slow backends</span></span>
-<span class="code-line" data-line="2">b, err := pool.<span class="function">Next</span>()</span>
-<span class="code-line" data-line="3"><span class="keyword">if</span> err != <span class="keyword">nil</span> { <span class="keyword">return</span> <span class="string">503</span> }</span>
-<span class="code-line" data-line="4">proxy.<span class="function">Forward</span>(b, req)</span>
-                    </div>
-                    <ul class="achievements">
-                        <li>Built a load balancer in Go with TCP (L4) and HTTP (L7) modes, using only the standard library</li>
-                        <li>Implemented round-robin and least-connections routing behind a pluggable interface</li>
-                        <li>Added active health checks with flap-preventing thresholds, passive failure detection, and automatic failover and recovery</li>
-                        <li>Exposed Prometheus metrics for requests, latency and backend health, with graceful connection draining on shutdown</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Go</span>
-                        <span class="tech-tag">TCP/IP</span>
-                        <span class="tech-tag">HTTP</span>
-                        <span class="tech-tag">Prometheus</span>
-                        <span class="tech-tag">Docker</span>
-                    </div>
-                    <a class="project-link" href="https://github.com/Hrishikesh16nikam/go-loadbalancer" target="_blank" rel="noopener">go-loadbalancer</a>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-id">004</div>
-                    <h3 class="project-title">Collaborative Editor (CRDT)</h3>
-                    <div class="project-meta">Personal Project | October 2026</div>
-                    <div class="code-block" data-lang="JavaScript">
-<span class="code-line" data-line="1"><span class="comment">// converge in any order</span></span>
-<span class="code-line" data-line="2">a.<span class="function">receive</span>(opFromB);</span>
-<span class="code-line" data-line="3">b.<span class="function">receive</span>(opFromA);</span>
-<span class="code-line" data-line="4"><span class="function">assert</span>(a.<span class="function">eq</span>(b));</span>
-                    </div>
-                    <ul class="achievements">
-                        <li>Implemented a sequence CRDT (RGA) from scratch for real-time multi-user editing with offline support</li>
-                        <li>Wrote a minimal RFC 6455 WebSocket server in Go, handling framing, masking, fragmentation and cross-origin protection</li>
-                        <li>Verified convergence with 200 randomized simulations of three concurrent editors receiving operations in random order</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Go</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">CRDT</span>
-                        <span class="tech-tag">WebSocket</span>
-                        <span class="tech-tag">Distributed Systems</span>
-                    </div>
-                    <a class="project-link" href="https://github.com/Hrishikesh16nikam/crdt-editor" target="_blank" rel="noopener">crdt-editor</a>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-id">005</div>
-                    <h3 class="project-title">DevOps Networking Automation</h3>
-                    <div class="project-meta">Northeastern University | December 2024</div>
-                    <div class="code-block" data-lang="C++">
-<span class="code-line" data-line="1"><span class="comment">// Automated packet pipeline implementation</span></span>
-<span class="code-line" data-line="2"><span class="keyword">class</span> <span class="function">PacketPipeline</span> {</span>
-<span class="code-line" data-line="3">  <span class="keyword">void</span> <span class="function">process</span>() { <span class="comment">/* 96% throughput */</span> }</span>
-<span class="code-line" data-line="4">};</span>
-                    </div>
-                    <ul class="achievements">
-                        <li>Implemented automated packet pipelines, achieving 96% stable throughput</li>
-                        <li>Improved link reliability by 41% with integrity checks</li>
-                        <li>Reduced latency jitter by 37% using event-driven timers</li>
-                        <li>Lowered communication faults by 28% through protocol analysis</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span class="tech-tag">C++</span>
-                        <span class="tech-tag">Sockets</span>
-                        <span class="tech-tag">Event-Driven Timers</span>
-                        <span class="tech-tag">Automation</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-id">006</div>
-                    <h3 class="project-title">Reliable Transport Protocols</h3>
-                    <div class="project-meta">Northeastern University | December 2024</div>
-                    <div class="code-block" data-lang="C++">
-<span class="code-line" data-line="1"><span class="comment">// Alternating Bit, GBN, SR protocols</span></span>
-<span class="code-line" data-line="2"><span class="keyword">class</span> <span class="function">TransportProtocol</span> {</span>
-<span class="code-line" data-line="3">  <span class="keyword">float</span> reliability = <span class="string">99.1f</span>; <span class="comment">// 99.1%</span></span>
-<span class="code-line" data-line="4">};</span>
-                    </div>
-                    <ul class="achievements">
-                        <li>Constructed 3 transport protocols achieving 99.1% delivery reliability</li>
-                        <li>Integrated Fletcher's checksum, improving detection accuracy by 46%</li>
-                        <li>Designed timer-driven retransmission, reducing recovery delay by 33%</li>
-                        <li>Evaluated protocol behavior using Python scripts and Wireshark</li>
-                    </ul>
-                    <div class="tech-tags">
-                        <span class="tech-tag">C++</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Wireshark</span>
-                        <span class="tech-tag">Protocol Design</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Interactive Shell -->
-        <section id="terminal">
-            <div class="section-header scroll-fade-up">INTERACTIVE SHELL</div>
-            <div class="terminal-window no-tilt scroll-scale">
-                <div class="terminal-header">
-                    <div class="terminal-button"></div>
-                    <div class="terminal-button"></div>
-                    <div class="terminal-button"></div>
-                    <div class="terminal-title">bash -- type 'help'</div>
-                </div>
-                <div class="terminal-content">
-                    <div class="shell-hint">A real shell. Type a command and press Enter. Up and Down arrows walk your history.</div>
-                    <div class="shell-output" id="shell-output" role="log" aria-live="polite"></div>
-                    <label class="shell-input-line" for="shell-input">
-                        <span class="prompt">visitor@hrishikesh:~$</span>
-                        <input id="shell-input" class="shell-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal command input">
-                    </label>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact">
-            <div class="section-header scroll-fade-up">ESTABLISH CONNECTION</div>
-            <div class="terminal-window no-tilt scroll-scale">
-                <div class="terminal-header">
-                    <div class="terminal-button"></div>
-                    <div class="terminal-button"></div>
-                    <div class="terminal-button"></div>
-                    <div class="terminal-title">contact_info.sh</div>
-                </div>
-                <div class="terminal-content">
-                    <div class="code-block" data-lang="json">
-<span class="code-line" data-line="1">{</span>
-<span class="code-line" data-line="2">  <span class="string">"email"</span>: <span class="string">"<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="741a1d1f15195a1c341a1b06001c1115070011061a5a111001">[email&#160;protected]</a>"</span>,</span>
-<span class="code-line" data-line="3">  <span class="string">"location"</span>: <span class="string">"Boston, MA"</span>,</span>
-<span class="code-line" data-line="4">  <span class="string">"status"</span>: <span class="string">"Available for opportunities"</span></span>
-<span class="code-line" data-line="5">}</span>
-                    </div>
-
-                    <div class="contact-links">
-                        <a href="/cdn-cgi/l/email-protection#a0cec9cbc1cd8ec8e0cecfd2d4c8c5c1d3d4c5d2ce8ec5c4d5" class="contact-link">EMAIL</a>
-                        <a href="https://www.linkedin.com/in/hrishi16/" target="_blank" class="contact-link">LINKEDIN</a>
-                        <a href="https://github.com/Hrishikesh16nikam" target="_blank" class="contact-link">GITHUB</a>
-                        <button type="button" class="contact-link" id="copy-email">COPY EMAIL</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Copy Confirmation -->
-    <div class="copy-toast" role="status" aria-live="polite"></div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-ascii">
-╔═══════════════════════════════════════════════════════════╗
-║  © 2026 HRISHIKESH NIKAM | SYSTEM BUILD v2.0             ║
-║  All systems operational | Uptime: 99.99%                ║
-╚═══════════════════════════════════════════════════════════╝
-        </div>
-    </footer>
-
-    <script src="js/main.js"></script>
-    <script src="js/projects.js"></script>
-</body>
-</html>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="shell nav-inner">
+<a aria-label="Hrishikesh Nikam, home" class="wordmark" href="#home"><span class="prompt">&gt;_</span> hn<span class="green">.</span></a>
+<nav aria-label="Main navigation" id="site-nav"><a href="#work">Selected work</a><a aria-label="Explore independent engineering projects" href="#projects">Projects</a><a href="#experience">Journey</a><a href="#about">About</a><a href="#resumes">Résumés</a><a href="#contact">Contact</a></nav>
+<div class="nav-actions"><button aria-label="Pause Matrix background animation" class="rain-toggle" id="matrix-toggle" type="button">⏸ Pause rain</button><a class="resume-top" href="#resumes" rel="noopener" target="_blank">Choose résumé <span aria-hidden="true">↓</span></a></div>
+</div></header>
+<main id="main">
+<section aria-labelledby="hero-title" class="hero" id="home"><canvas aria-hidden="true" id="matrix-rain"></canvas><div aria-hidden="true" class="ambient"></div>
+<div class="shell hero-layout">
+<div class="hero-copy">
+<div class="intro-name"><span class="status-dot"></span><span>Hi, I'm <strong>Hrishikesh Nikam<span class="name-period">.</span></strong></span></div>
+<p class="role">SOFTWARE ENGINEER <span> / </span> FORWARD DEPLOYED ENGINEER <span class="role-location">• Boston, MA</span></p>
+<h1 id="hero-title">I turn complex problems into <em>software people can use.</em></h1>
+<p class="hero-sub">I work with people to understand the real problem, then design and build software that solves it. My experience spans full-stack products, AI-enabled workflows, and dependable systems used in practice.</p><p class="hero-availability">M.S. Computer Engineering · Dec 2026 · Open to full-time SWE &amp; FDE opportunities</p>
+<div class="hero-links"><a class="btn primary" href="#work">Explore my work <span aria-hidden="true">↗</span></a><a class="btn secondary" href="#resumes" rel="noopener" target="_blank">Choose résumé <span aria-hidden="true">↘</span></a><a class="text-link" href="mailto:nikam.h@northeastern.edu">Get in touch <span aria-hidden="true">↗</span></a></div>
+</div>
+<aside aria-label="My approach to engineering" class="hero-terminal"><div class="terminal-top"><span aria-hidden="true" class="lights"><i></i><i></i><i></i></span><span>~/profile/status</span><span class="terminal-online">● available</span></div>
+<div class="terminal-inner snapshot-inner"><p class="terminal-command"><b>$</b> cat profile.json</p><h2 class="snapshot-title">Quick snapshot</h2>
+<dl class="snapshot-list"><div><dt>Experience</dt><dd>4+ years</dd></div><div><dt>Builds</dt><dd>Full-stack &amp; backend</dd></div><div><dt>Focus</dt><dd>AI integration &amp; security</dd></div><div><dt>Approach</dt><dd>Discovery → production</dd></div></dl>
+</div></aside>
+</div>
+<div class="shell scroll-hint"><a href="#work">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a></div>
+</section>
+<section aria-label="My professional experience" class="employer-bridge"><div class="shell employer-inner"><div class="bridge-heading"><span class="small-label">THE JOURNEY SO FAR</span><h2>Where I've worked<span>.</span></h2><p>Building, learning, and taking on bigger challenges.</p></div><div class="employer-list">
+<div class="employer"><div class="employer-mark ibm-mark"><img alt="IBM logo" loading="lazy" src="assets/ibm-official.png"/></div><div><strong>IBM</strong><span>AI-assisted security workflows</span></div></div>
+<div class="employer"><div class="employer-mark cybersenz-mark"><img alt="Cybersenz logo" loading="lazy" src="assets/cybersenz-official.png"/></div><div><strong>Cybersenz</strong><span>Healthcare software &amp; AI</span></div></div>
+<div class="employer"><div class="employer-mark infosys-mark"><img alt="Infosys logo" loading="lazy" src="assets/infosys-official.png"/></div><div><strong>Infosys</strong><span>Enterprise engineering &amp; delivery</span></div></div>
+</div></div></section>
+<section aria-labelledby="work-title" class="section section-work" id="work"><div class="shell"><div class="section-intro"><p class="kicker">01 / SELECTED WORK</p><h2 id="work-title">Real problems. <em>Useful solutions.</em></h2><p>What matters to me isn't just the technology. It's what the technology makes possible for the people using it.</p></div>
+<article class="feature"><div class="feature-main"><div class="feature-meta"><span class="tag">Production experience</span><span>Healthcare · Client details withheld</span></div><h3>Helping a medical practice spend less time juggling everyday tasks.</h3><div class="feature-proof"><span class="proof-pill">SHIPPED TO REAL USERS</span><span class="proof-caption">End-to-end architecture, development, testing and customer iteration</span></div><div aria-label="General engineering technologies" class="tech-tags"><span>React</span><span>Python</span><span>APIs</span><span>Docker</span></div><p class="feature-lead">Calls, messages, and documents often arrive through different channels. I independently built software that brings those workflows together so staff can focus on caring for people.</p>
+<div class="story-list"><div><span class="story-index">01</span><div><strong>The challenge</strong><p>Information was spread across multiple channels, making day-to-day coordination harder.</p></div></div><div><span class="story-index">02</span><div><strong>My contribution</strong><p>Worked directly with the customer, selected the architecture, built the application, and refined it through feedback.</p></div></div><div><span class="story-index">03</span><div><strong>The result</strong><p>Production tools that connect communication and intake, with access-controlled workflows and interruption-aware voice interactions.</p></div></div></div>
+<details class="tech-detail"><summary>For engineers: how I built it <span aria-hidden="true">+</span></summary><p>Frontend and backend services, secure APIs, authenticated access, audit trails, conversational voice integration, asynchronous processing, and container-based deployment. Client identity, private integrations, and sensitive operational details are intentionally omitted.</p></details></div>
+<div aria-label="Concept illustration of connected healthcare workflows, not a screenshot of customer systems" class="feature-visual"><div class="visual-header"><span class="tiny-dots">● ● ●</span><span>workflow-overview / concept</span></div><div class="visual-body"><p class="visual-eyebrow">ONE CONNECTED EXPERIENCE</p><div class="visual-dashboard"><span class="dashboard-icon">▤</span><div><strong>Operations workspace</strong><small>Everything in one place</small></div><span class="signal">●</span></div><div class="visual-connect"><span></span><span></span><span></span></div><div class="workflow-three"><div><span>◉</span><strong>Calls</strong><small>Conversations</small></div><div><span>✉</span><strong>Messages</strong><small>Requests</small></div><div><span>▣</span><strong>Documents</strong><small>Processing</small></div></div><p class="visual-note">Illustrative flow only. No client information shown.</p></div></div></article>
+<div class="work-next"><div><span class="work-next-label">MORE ABOUT MY WORK</span><p>IBM and Infosys are part of the engineering journey below, with my roles, contributions and results in one place.</p></div><a href="#experience">View my career journey <span aria-hidden="true">↗</span></a></div></div></section>
+<section aria-labelledby="projects-title" class="section projects-section" id="projects"><div class="shell"><div class="section-intro"><p class="kicker">02 / INDEPENDENT PROJECTS</p><h2 id="projects-title">Curiosity, <em>turned into code.</em></h2><p>I build outside work because I'm curious how systems behave. Each project starts with a problem, not a list of technologies.</p></div><div class="projects-grid">
+<article class="project"><div aria-hidden="false" class="project-art art-rota art-rota-real"><img alt="Actual House Rota interface showing demo household names, weekly task assignments, completed tasks and swap controls" decoding="async" loading="lazy" src="assets/house-rota-demo.png"/></div><div class="project-content"><p class="project-number">01 / FULL-STACK PRODUCT</p><h3>House Rota</h3><p class="project-hook">Making shared responsibilities fairer and easier to manage.</p><p>A web app that coordinates household tasks, adjusts when plans change, and sends reminders so nobody has to keep track manually.</p><div class="project-proof"><span class="project-proof-number">43</span><span class="project-proof-label">automated tests</span></div><div aria-label="Technologies used" class="tech-tags"><span>React</span><span>TypeScript</span><span>Cloudflare Workers</span><span>SQLite</span></div><details><summary>Engineering details <span aria-hidden="true">+</span></summary><p>React, TypeScript, Cloudflare Workers, SQLite, constraint-based assignments, push notifications, and automated tests.</p></details><a href="https://github.com/Hrishikesh16nikam/house-rota" rel="noopener" target="_blank">Explore project <span aria-hidden="true">↗</span></a></div></article>
+<article class="project"><div aria-hidden="true" class="project-art art-balancer"><div aria-label="Local benchmark with one slow backend: round robin 658 requests per second versus least connections 2598 requests per second." class="benchmark-panel" role="img"><p class="benchmark-title">Local throughput comparison</p><div class="benchmark-row"><div class="benchmark-row-head">Round robin<strong>658 req/s</strong></div><div class="benchmark-track"><span style="width:25.3%"></span></div></div><div class="benchmark-row"><div class="benchmark-row-head">Least connections<strong>2,598 req/s</strong></div><div class="benchmark-track"><span style="width:100%"></span></div></div><p class="benchmark-footnote">One slow backend · local test · routing strategies compared</p></div></div><div class="project-content"><p class="project-number">02 / BACKEND SYSTEMS</p><h3>Go Load Balancer</h3><p class="project-hook">Keeping applications responsive when servers slow down.</p><p>A traffic router that chooses healthy servers and spreads out requests so a slow machine doesn't slow down the whole service.</p><div class="project-proof"><span class="project-proof-number">~4×</span><span class="project-proof-label">throughput vs. round robin with a slow backend (658 → 2,598 req/s; local test)</span></div><div aria-label="Technologies used" class="tech-tags"><span>Go</span><span>TCP/HTTP</span><span>Prometheus</span><span>Docker</span></div><details><summary>Engineering details <span aria-hidden="true">+</span></summary><p>Go, TCP/HTTP proxying, least-connections routing, automatic failover, health checks, and Prometheus metrics.</p></details><a href="https://github.com/Hrishikesh16nikam/go-loadbalancer" rel="noopener" target="_blank">Explore project <span aria-hidden="true">↗</span></a></div></article>
+<article class="project"><div aria-hidden="true" class="project-art art-editor"><div class="editor-window"><div class="editor-top">team-notes.md <span>● synced</span></div><div class="editor-text"><span></span><span></span><span></span><span></span></div><div class="editor-users"><i>A</i><i>B</i><i>C</i></div></div><span class="art-caption">Concept illustration</span></div><div class="project-content"><p class="project-number">03 / COLLABORATIVE SOFTWARE</p><h3>Real-Time Editor</h3><p class="project-hook">Letting people edit together—even when they lose connection.</p><p>A collaborative editor that keeps everyone's changes consistent, including when users go offline and reconnect later.</p><div class="project-proof"><span class="project-proof-number">200</span><span class="project-proof-label">seeded convergence simulations</span></div><div aria-label="Technologies used" class="tech-tags"><span>JavaScript</span><span>Go</span><span>WebSockets</span><span>CRDT</span></div><details><summary>Engineering details <span aria-hidden="true">+</span></summary><p>Custom JavaScript sequence CRDT, Go WebSocket synchronization server, offline reconciliation, and convergence tests.</p></details><a href="https://github.com/Hrishikesh16nikam/crdt-editor" rel="noopener" target="_blank">Explore project <span aria-hidden="true">↗</span></a></div></article>
+<article class="project"><div aria-hidden="true" class="project-art art-security"><div class="security-window"><div class="security-symbol">⌁</div><div class="security-row"><span>PRIVATE DATA</span><b>PROTECTED</b></div><div class="security-row"><span>ACTIVITY LOG</span><b>VERIFIED</b></div><div class="security-row"><span>ACCESS</span><b>CONTROLLED</b></div></div><span class="art-caption">Concept illustration</span></div><div class="project-content"><p class="project-number">04 / SECURITY &amp; PRIVACY</p><h3>Triage Inbox</h3><p class="project-hook">Making automated message handling safer and more accountable.</p><p>A privacy-minded intake system that protects sensitive information and records what happened, making activity easier to review and trace.</p><div class="project-proof"><span class="project-proof-number">60</span><span class="project-proof-label">automated tests</span></div><div aria-label="Technologies used" class="tech-tags"><span>Python</span><span>SQLite</span><span>Authentication</span><span>Audit logs</span></div><details><summary>Engineering details <span aria-hidden="true">+</span></summary><p>Python, sensitive-data redaction, rotating authentication tokens, tamper-evident audit logging, and automated tests.</p></details><a href="https://github.com/Hrishikesh16nikam/triage-inbox" rel="noopener" target="_blank">Explore project <span aria-hidden="true">↗</span></a></div></article>
+</div><p class="projects-verification">House Rota shows a genuine application screenshot with demo names. Other illustrations are conceptual; the load-balancer graphic uses the stated local benchmark.</p></div></section>
+<section aria-labelledby="experience-title" class="section experience-section" id="experience"><div class="shell"><div class="section-intro journey-intro"><p class="kicker">03 / THE JOURNEY</p><h2 id="experience-title">My path from <em>code to ownership.</em></h2><p>Three chapters of my engineering journey. The essentials are here; explore a role for more detail.</p></div>
+<div aria-label="Career highlights" class="journey-grid">
+<article aria-labelledby="infosys-title" class="journey-card">
+<div class="journey-top"><div class="journey-logo"><img alt="Infosys logo" loading="lazy" src="assets/infosys-official.png"/></div><span class="journey-period">Nov 2020 – Jul 2024</span></div>
+<p class="journey-tag">01 / ENGINEERING FOUNDATION</p>
+<h3 id="infosys-title">Infosys</h3>
+<p class="journey-summary">Grew from building interfaces to improving software delivery and coordinating engineering work.</p>
+<div class="journey-metric"><strong>8</strong><span>engineers coordinated in technical delivery</span></div><div class="tech-tags"><span>React</span><span>Jenkins</span><span>ServiceNow</span></div><div aria-label="Key contributions at Infosys" class="journey-highlights">
+<h4>What I contributed</h4>
+<ul>
+<li>Built reusable interfaces for enterprise applications.</li>
+<li>Created and improved automated software deployment pipelines.</li>
+</ul>
+</div>
+<button aria-controls="journey-expanded" aria-expanded="false" class="journey-more-btn" data-journey="infosys" type="button">Explore my role progression <span aria-hidden="true">↗</span></button>
+</article>
+<article aria-labelledby="cybersenz-title" class="journey-card">
+<div class="journey-top"><div class="journey-logo"><img alt="Cybersenz logo" loading="lazy" src="assets/cybersenz-official.png"/></div><span class="journey-period">Jan – Jun 2026</span></div>
+<p class="journey-tag">02 / PRODUCT OWNERSHIP</p>
+<h3 id="cybersenz-title">Cybersenz</h3>
+<p class="journey-summary">Took customer problems from first conversations to useful software deployed for real users.</p>
+<div class="journey-metric"><strong>Production</strong><span>software delivered to real customers</span></div><div class="tech-tags"><span>Frontend</span><span>Backend APIs</span><span>AI integration</span></div><div aria-label="Key contributions at Cybersenz" class="journey-highlights">
+<h4>What I contributed</h4>
+<ul>
+<li>Led customer discussions and translated needs into an implementation plan.</li>
+<li>Designed and built connected web and automation components.</li>
+</ul>
+</div>
+<button aria-controls="journey-expanded" aria-expanded="false" class="journey-more-btn" data-journey="cybersenz" type="button">Explore what I built <span aria-hidden="true">↗</span></button>
+</article>
+<article aria-labelledby="ibm-title" class="journey-card">
+<div class="journey-top"><div class="journey-logo"><img alt="IBM logo" loading="lazy" src="assets/ibm-official.png"/></div><span class="journey-period">Jun – Aug 2026</span></div>
+<p class="journey-tag">03 / APPLIED AI</p>
+<h3 id="ibm-title">IBM</h3>
+<p class="journey-summary">Helped make complex security reviews easier to understand and act on with connected AI workflows.</p>
+<div class="journey-metric"><strong>25%</strong><span>less developer onboarding time</span></div><div class="tech-tags"><span>AI workflows</span><span>FedRAMP</span><span>Conditional logic</span></div><div aria-label="Key contributions at IBM" class="journey-highlights">
+<h4>What I contributed</h4>
+<ul>
+<li>Designed guided experiences for investigating security findings.</li>
+<li>Implemented logic connecting remediation and follow-up validation.</li>
+</ul>
+</div>
+<button aria-controls="journey-expanded" aria-expanded="false" class="journey-more-btn" data-journey="ibm" type="button">Explore my contribution <span aria-hidden="true">↗</span></button>
+</article>
+</div>
+<section aria-label="Additional professional experience" class="journey-expanded" hidden="" id="journey-expanded" tabindex="-1">
+<div class="journey-expanded-heading"><div><p class="kicker" id="journey-detail-kicker">EXPERIENCE / DEEP DIVE</p><h3 id="journey-detail-title">Professional experience</h3></div><button aria-label="Close additional details" class="journey-close" type="button">Close <span aria-hidden="true">×</span></button></div>
+<div class="journey-detail-body" id="journey-detail-body"></div>
+</section><p class="journey-note">Want the full timeline? <a href="#resumes" rel="noopener" target="_blank">Compare my résumés ↗</a></p></div></section>
+<section aria-labelledby="about-title" class="section about-section" id="about"><div class="shell"><div class="section-intro"><p class="kicker">04 / ABOUT ME</p><h2 id="about-title">Curious by nature. <em>Builder by practice.</em></h2></div><div class="about-grid"><div class="about-copy"><p>I’m a software engineer who enjoys understanding both the people using a product and the technical systems behind it. I like working through uncertainty, learning new technologies, and being responsible for something useful at the end.</p><p>I'm completing an M.S. in Computer Engineering at Northeastern University, with a focus on computer networks and security. I enjoy roles that connect thoughtful engineering with useful products.</p><div class="education"><p class="edu-label">EDUCATION</p><div class="degree-record"><strong>Northeastern University</strong><span>M.S. Computer Engineering <b>· GPA 3.76/4.00 · Dec 2026</b></span><span>Computer Networks &amp; Security · Boston, MA</span></div><div class="degree-record"><strong>Rajarambapu Institute of Technology</strong><span>B.Tech. Electronics &amp; Telecommunication · 2020</span></div><div class="credentials"><p class="edu-label">SELECTED CERTIFICATIONS &amp; PROGRAMS</p>
+<ul>
+<li><strong>Google Cybersecurity Professional Certificate</strong><span>Google / Coursera · 2025</span><small class="credential-reference">Credential: VTWJAGFU8520</small></li>
+<li><strong>ServiceNow Certified System Administrator</strong><span>ServiceNow · 2023</span><small class="credential-reference">Credential: 24709568</small></li>
+<li><strong>Microsoft Azure Fundamentals (AZ-900)</strong><span>Microsoft · 2022</span><small class="credential-reference">Credential: I317-5998</small></li>
+<li><strong>DevOps Essentials — The Handbook</strong><span>IBM · 2026</span></li>
+<li><strong>Forward Program</strong><span>McKinsey.org · 2026</span></li>
+</ul></div></div></div><div class="skills-box"><p class="skills-prompt"><span>$</span> cat strengths.txt</p><div><h3>Software engineering</h3><p>Python, TypeScript, JavaScript, Go, React, FastAPI</p></div><div><h3>Backend &amp; cloud</h3><p>APIs, databases, Docker, AWS, Git, CI/CD</p></div><div><h3>AI &amp; integration</h3><p>Conversational applications, multi-step workflows, system integration</p></div><div><h3>Customer collaboration</h3><p>Requirements discovery, architecture, demos, Agile delivery</p></div></div></div></div></section>
+<section aria-labelledby="resumes-title" class="section resume-section" id="resumes"><div class="shell">
+<div class="section-intro resume-section-intro"><p class="kicker">05 / RÉSUMÉS</p><h2 id="resumes-title">Two ways I can <em>contribute.</em></h2><p>My experience connects software engineering with customer-facing delivery. Choose the résumé that best fits the opportunity you are hiring for.</p></div>
+<div class="resume-grid">
+<article class="resume-choice">
+<div class="resume-choice-top"><span class="resume-number">01 / ENGINEERING</span><span aria-hidden="true" class="resume-choice-icon">&lt;/&gt;</span></div>
+<h3>Software Engineer</h3><p>For roles focused on building production software, backend services, full-stack applications, performance, and reliable delivery.</p>
+<div class="resume-highlights"><span>Full-stack development</span><span>Backend &amp; APIs</span><span>Cloud &amp; reliability</span></div>
+<div class="resume-choice-actions"><a aria-label="View Software Engineer résumé PDF" class="resume-view" href="resume-swe.pdf" rel="noopener" target="_blank">View SWE résumé <span aria-hidden="true">↗</span></a><a aria-label="Download Software Engineer résumé PDF" class="resume-download" download="" href="resume-swe.pdf">Download PDF <span aria-hidden="true">↓</span></a></div>
+</article>
+<article class="resume-choice">
+<div class="resume-choice-top"><span class="resume-number">02 / CUSTOMER ENGINEERING</span><span aria-hidden="true" class="resume-choice-icon">&gt;_</span></div>
+<h3>Forward Deployed Engineer</h3><p>For roles connecting customer needs with architecture, AI integrations, technical problem-solving, and end-to-end production ownership.</p>
+<div class="resume-highlights"><span>Customer discovery</span><span>AI workflows</span><span>Solution delivery</span></div>
+<div class="resume-choice-actions"><a aria-label="View Forward Deployed Engineer résumé PDF" class="resume-view" href="resume-fde.pdf" rel="noopener" target="_blank">View FDE résumé <span aria-hidden="true">↗</span></a><a aria-label="Download Forward Deployed Engineer résumé PDF" class="resume-download" download="" href="resume-fde.pdf">Download PDF <span aria-hidden="true">↓</span></a></div>
+</article>
+</div>
+</div></section><section aria-labelledby="contact-title" class="contact-section" id="contact"><div class="shell contact-inner"><p class="kicker">06 / LET’S CONNECT</p><div class="contact-layout"><div><h2 id="contact-title">Have a good problem <em>to solve?</em></h2><p>I’d love to hear what you're building.</p><a class="contact-email" href="mailto:nikam.h@northeastern.edu">nikam.h@northeastern.edu <span>↗</span></a></div><div class="contact-actions"><a href="https://www.linkedin.com/in/hrishi16/" rel="noopener" target="_blank">LinkedIn <span>↗</span></a><a href="https://github.com/Hrishikesh16nikam" rel="noopener" target="_blank">GitHub <span>↗</span></a></div></div></div></section>
+</main><footer class="footer"><div class="shell footer-inner"><span><span class="green">&gt;_</span> Hrishikesh Nikam · Built with curiosity</span><span>Boston, MA · © 2026</span><a href="#home">Back to top ↑</a></div></footer>
+<script defer="" src="js/matrix.js"></script><script defer="" src="js/main.js"></script>
+</body></html>
